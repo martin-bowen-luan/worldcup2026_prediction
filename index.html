@@ -14,187 +14,175 @@
 }
 body { font-family:'Segoe UI','Microsoft YaHei',sans-serif; background:var(--bg); color:var(--text); height:100vh; display:flex; flex-direction:column; overflow:hidden; }
 
-/* ── Header ── */
 header { background:var(--bg2); border-bottom:2px solid var(--gold); padding:9px 20px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; box-shadow:0 1px 4px rgba(0,0,0,.08); }
 .logo { font-size:20px; font-weight:800; color:var(--gold); }
 .tagline { font-size:12px; color:var(--dim); margin-top:2px; }
 .btn { padding:6px 14px; border:1px solid var(--gold); background:transparent; color:var(--gold); border-radius:5px; cursor:pointer; font-size:13px; font-family:inherit; transition:all .15s; font-weight:600; }
 .btn:hover { background:var(--gold); color:#fff; }
 
-/* ── Tabs ── */
 .tabs { display:flex; background:var(--bg2); border-bottom:2px solid var(--bd); flex-shrink:0; }
 .tab-btn { padding:9px 24px; background:transparent; color:var(--dim); border:none; border-bottom:2px solid transparent; margin-bottom:-2px; cursor:pointer; font-size:14px; font-family:inherit; transition:all .15s; font-weight:500; }
 .tab-btn.active { color:var(--gold); border-bottom-color:var(--gold); font-weight:700; }
 .tab-btn:hover:not(.active) { color:var(--text); background:var(--bg); }
 
-/* ── Shared banner ── */
-#shared-banner {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:8px 20px; background:#e8f5e9; border-bottom:1px solid #81c784;
-  flex-shrink:0; gap:10px; font-size:13px; color:#2e7d32;
-}
+#shared-banner { display:flex; align-items:center; justify-content:space-between; padding:8px 20px; background:#e8f5e9; border-bottom:1px solid #81c784; flex-shrink:0; gap:10px; font-size:13px; color:#2e7d32; }
 .sbtn { padding:4px 12px; border:1px solid #4caf50; background:transparent; color:#2e7d32; border-radius:4px; cursor:pointer; font-size:12px; font-family:inherit; transition:all .15s; font-weight:600; }
 .sbtn:hover { background:#4caf50; color:#fff; }
 .sbtn-x { border-color:#adbfad; color:#6a7c6a; }
 .sbtn-x:hover { background:#d4e8d4; color:#2e7d32; border-color:#4caf50; }
 
-/* ── Panes ── */
 .tab-pane { flex:1; overflow:hidden; display:none; flex-direction:column; }
 .tab-pane.active { display:flex; }
 
 /* ══════════ GROUP STAGE ══════════ */
-.gs-outer { flex:1; overflow-y:auto; overflow-x:hidden; padding:14px 16px 40px; }
-
-.groups-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(280px,1fr));
-  gap:12px;
-  margin-bottom:16px;
-}
-
-/* Group card */
+.gs-outer { flex:1; overflow-y:auto; overflow-x:hidden; padding:14px 16px 60px; }
+.groups-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; margin-bottom:16px; }
 .gs-card { background:var(--bg2); border:1px solid var(--bd); border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.06); }
 .gs-card-hdr { padding:6px 12px; font-size:13px; font-weight:700; }
 .gs-card-hdr.left  { background:rgba(212,137,10,.1); color:var(--gold); border-bottom:1px solid rgba(212,137,10,.2); }
 .gs-card-hdr.right { background:rgba(106,63,191,.1); color:var(--purple); border-bottom:1px solid rgba(106,63,191,.2); }
-
-/* Standings */
 .gs-standings { padding:6px 10px 4px; }
-.st-row {
-  display:grid;
-  grid-template-columns:16px 1fr 28px 22px 22px 22px 30px;
-  align-items:center;
-  font-size:12px;
-  padding:3px 2px;
-  border-radius:4px;
-  gap:1px;
-}
+.st-row { display:grid; grid-template-columns:16px 1fr 28px 22px 22px 22px 30px; align-items:center; font-size:12px; padding:3px 2px; border-radius:4px; gap:1px; }
 .st-hdr { color:var(--dim); font-size:11px; margin-bottom:2px; }
 .st-q1 { background:rgba(30,158,58,.14); }
 .st-q2 { background:rgba(26,106,191,.12); }
 .st-q3 { background:rgba(212,137,10,.12); }
-.sn  { text-align:center; color:var(--dim); }
-.steam { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--text); }
-.sv  { text-align:center; color:var(--dim); }
-.sp  { font-weight:700; color:var(--text); }
+.sn { text-align:center; color:var(--dim); }
+.steam { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.sv { text-align:center; color:var(--dim); }
+.sp { font-weight:700; }
 .sq1 { color:#1a7a2e; font-weight:700; }
 .sq2 { color:#1452a0; font-weight:700; }
 .sq3 { color:#b36a00; font-weight:700; }
-
-/* Matches */
 .gs-matches { border-top:1px solid var(--bd); padding:6px 10px 8px; background:var(--bg); }
-.gs-round-lbl {
-  font-size:11px; color:var(--dim);
-  padding:5px 0 3px; margin-top:3px;
-  border-top:1px solid var(--bd);
-  letter-spacing:.03em; font-weight:600;
-}
+.gs-round-lbl { font-size:11px; color:var(--dim); padding:5px 0 3px; margin-top:3px; border-top:1px solid var(--bd); letter-spacing:.03em; font-weight:600; }
 .gs-round-lbl:first-child { border-top:none; margin-top:0; padding-top:0; }
-.gs-match {
-  display:grid;
-  grid-template-columns:1fr 34px 14px 34px 1fr;
-  align-items:center;
-  gap:4px;
-  padding:3px 0;
-}
+.gs-match { display:grid; grid-template-columns:1fr 34px 14px 34px 1fr; align-items:center; gap:4px; padding:3px 0; }
 .gm-l { text-align:right; font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--text); }
 .gm-r { text-align:left;  font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--text); }
-.gm-sep  { text-align:center; color:var(--dim); font-size:13px; font-weight:700; }
-.score-inp {
-  width:34px; padding:3px 4px;
-  background:#fff; border:1.5px solid var(--bd); border-radius:4px;
-  color:var(--text); font-size:14px; font-weight:700; text-align:center;
-  font-family:inherit; display:block;
-}
-.score-inp::-webkit-outer-spin-button,
-.score-inp::-webkit-inner-spin-button { -webkit-appearance:none; }
-.score-inp[type=number] { -moz-appearance:textfield; }
-.score-inp:focus { outline:none; border-color:var(--gold); background:#fffcf0; }
-.gs-match.done .score-inp { border-color:var(--bdhi); background:#f8f9fa; }
+.gm-sep { text-align:center; color:var(--dim); font-size:13px; font-weight:700; }
+.score-spin { width:32px; height:28px; border:1.5px solid var(--bd); border-radius:4px; background:var(--bg); color:var(--text); font-size:14px; font-weight:700; display:flex; align-items:center; justify-content:center; cursor:ns-resize; user-select:none; flex-shrink:0; transition:border-color .12s; }
+.score-spin:focus { border-color:var(--gold); background:#fffcf0; outline:none; }
+.score-spin.empty { color:var(--bd); }
+.score-spin.disabled { background:#f0f1f3; color:#adb5c0; border-color:var(--bd); cursor:default; pointer-events:none; }
+.gs-match.done .score-spin { border-color:var(--bdhi); background:#f8f9fa; }
 
-/* Thirds section */
 .thirds-card { background:var(--bg2); border:1px solid var(--bd); border-radius:8px; padding:12px 14px; box-shadow:0 1px 3px rgba(0,0,0,.06); }
 .thirds-title { font-size:15px; font-weight:700; color:var(--text); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
 .thirds-title span { font-size:12px; font-weight:400; color:var(--dim); }
 .thirds-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:5px; }
-.third-row {
-  display:flex; align-items:center; gap:7px;
-  padding:5px 10px; border-radius:6px;
-  background:var(--bg); border:1px solid var(--bd);
-  font-size:12px;
-}
+.third-row { display:flex; align-items:center; gap:7px; padding:5px 10px; border-radius:6px; background:var(--bg); border:1px solid var(--bd); font-size:12px; }
 .third-row.adv { border-color:rgba(212,137,10,.5); background:rgba(212,137,10,.07); }
 .third-row.adv .trn { color:var(--gold); }
-.trn  { font-weight:700; color:var(--dim); width:18px; text-align:center; flex-shrink:0; }
-.trg  { color:var(--dim); width:16px; text-align:center; flex-shrink:0; font-size:11px; font-weight:700; }
-.trt  { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--text); }
-.trp  { color:var(--dim); font-size:11px; white-space:nowrap; flex-shrink:0; }
+.trn { font-weight:700; color:var(--dim); width:18px; text-align:center; flex-shrink:0; }
+.trg { color:var(--dim); width:16px; text-align:center; flex-shrink:0; font-size:11px; font-weight:700; }
+.trt { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.trp { color:var(--dim); font-size:11px; white-space:nowrap; flex-shrink:0; }
 .trbadge { background:var(--gold); color:#fff; padding:2px 7px; border-radius:3px; font-size:10px; font-weight:700; flex-shrink:0; }
-
-/* Legend */
 .gs-legend { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:10px; font-size:12px; color:var(--dim); }
 .gs-legend span { display:flex; align-items:center; gap:5px; }
 .ldot { width:9px; height:9px; border-radius:2px; flex-shrink:0; }
 
-/* ══════════ KNOCKOUT TAB ══════════ */
-.pool-section { padding:10px 18px 8px; background:var(--bg2); border-bottom:1px solid var(--bd); flex-shrink:0; }
-.pool-meta { display:flex; align-items:center; gap:10px; margin-bottom:7px; font-size:13px; color:var(--dim); flex-wrap:wrap; }
-.pool-meta strong { color:var(--gold); font-size:14px; }
-.legend { display:flex; flex-wrap:wrap; gap:8px; }
-.legend span { display:flex; align-items:center; gap:4px; font-size:12px; white-space:nowrap; }
-.dot { display:inline-block; width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+/* ══════════ INLINE KNOCKOUT ══════════ */
+.ko-wrap { margin-top:16px; }
+.ko-divider { display:flex; align-items:center; gap:12px; padding:10px 14px; margin-bottom:10px; background:var(--bg2); border:1px solid rgba(212,137,10,.3); border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,.06); flex-wrap:wrap; }
+.ko-div-title { font-size:15px; font-weight:800; color:var(--gold); flex:1; }
+.ko-div-hint { font-size:12px; color:var(--dim); }
+.ko-rd { background:var(--bg2); border:1px solid var(--bd); border-radius:8px; margin-bottom:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+.ko-rd-hdr { padding:6px 12px; display:flex; align-items:center; justify-content:space-between; background:rgba(212,137,10,.07); border-bottom:1px solid rgba(212,137,10,.18); }
+.ko-rd-label { font-size:13px; font-weight:700; color:var(--gold); }
+.ko-rd-count { font-size:11px; color:var(--dim); }
+.ko-rd-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:5px; padding:8px; }
+.ko-match { display:flex; flex-direction:column; gap:3px; padding:5px 8px; background:var(--bg); border:1px solid var(--bd); border-radius:6px; }
+.ko-match.decided { border-color:var(--bdhi); }
+.ko-match.tied { border-color:rgba(212,137,10,.45); background:rgba(212,137,10,.04); }
+.ko-main { display:grid; grid-template-columns:1fr 34px 14px 34px 1fr; align-items:center; gap:4px; }
+.ko-tl { text-align:right; font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--text); }
+.ko-tr { text-align:left;  font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--text); }
+.ko-win { color:var(--green); font-weight:700; }
+.ko-lose { opacity:.35; }
+.ko-empty-team { color:var(--bd); font-size:11px; }
+.ko-et { display:flex; align-items:center; gap:4px; padding:3px 6px; background:rgba(26,106,191,.08); border-radius:4px; border:1px solid rgba(26,106,191,.2); }
+.ko-et-lbl { font-size:10px; font-weight:700; color:var(--blue); white-space:nowrap; flex-shrink:0; }
+.ko-et-hint { font-size:10px; color:var(--dim); margin-left:4px; flex:1; }
+.ko-pk { display:flex; align-items:center; gap:6px; padding:3px 6px; background:rgba(106,63,191,.08); border-radius:4px; border:1px solid rgba(106,63,191,.2); flex-wrap:wrap; }
+.ko-pk-lbl { font-size:10px; font-weight:700; color:var(--purple); white-space:nowrap; flex-shrink:0; }
+.pk-btn { padding:2px 10px; border-radius:4px; border:1px solid var(--bd); background:var(--bg2); cursor:pointer; font-size:11px; font-family:inherit; transition:all .12s; white-space:nowrap; }
+.pk-btn:hover { border-color:var(--purple); background:rgba(106,63,191,.1); }
+.pk-btn.chosen { background:rgba(106,63,191,.18); border-color:var(--purple); color:var(--purple); font-weight:700; }
+.ko-champ { text-align:center; padding:20px 0 10px; }
+.ko-champ-box { display:inline-flex; align-items:center; gap:12px; padding:12px 32px; background:rgba(212,137,10,.1); border:2px solid var(--gold); border-radius:12px; font-size:18px; font-weight:800; color:var(--gold); }
+.ko-champ-empty { font-size:14px; color:var(--dim); padding:10px 24px; border:1px dashed var(--bd); border-radius:8px; display:inline-block; }
 
-.groups-rows { overflow-x:auto; }
-.groups-row  { display:flex; gap:6px; margin-bottom:5px; min-width:max-content; }
-.group-card  { background:var(--bg); border:1px solid var(--bd); border-radius:6px; padding:5px 6px; }
-.group-hdr   { font-size:11px; font-weight:700; text-align:center; padding-bottom:4px; margin-bottom:4px; border-bottom:1px solid var(--bd); }
-.group-hdr.left  { color:var(--gold); }
-.group-hdr.right { color:var(--purple); }
+/* ══════════ GROUP SEEDING PANEL ══════════ */
+.gs-seed { background:var(--bg2); border:1px solid var(--bd); border-radius:8px; margin-bottom:10px; box-shadow:0 1px 3px rgba(0,0,0,.06); overflow:hidden; }
+.gs-seed-hdr { display:flex; align-items:center; gap:8px; padding:7px 14px; background:rgba(26,106,191,.07); border-bottom:1px solid rgba(26,106,191,.2); }
+.gs-seed-title { font-size:14px; font-weight:800; color:var(--blue); flex:1; }
+.gs-seed-hint { font-size:11px; color:var(--dim); }
+.gs-seed-body { padding:8px 10px 10px; }
+.gs-seed-body.collapsed { display:none; }
+.gs-seed-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(188px,1fr)); gap:7px; }
+.gs-seed-card { border:1px solid var(--bd); border-radius:6px; overflow:hidden; }
+.gs-seed-card-hdr { padding:4px 10px; font-size:12px; font-weight:700; color:var(--gold); background:rgba(212,137,10,.08); display:flex; align-items:center; gap:4px; }
+.gs-seed-sels { margin-left:auto; display:flex; gap:4px; font-size:11px; }
+.gs-seed-sel1 { color:var(--green); font-weight:700; }
+.gs-seed-sel2 { color:var(--blue); font-weight:700; }
+.gs-seed-teams { display:flex; flex-direction:column; gap:2px; padding:5px 6px; }
+.gs-team-btn { display:flex; align-items:center; gap:5px; padding:4px 7px; border-radius:4px; border:1px solid var(--bd); background:var(--bg); cursor:pointer; font-size:11px; font-family:inherit; text-align:left; transition:all .1s; width:100%; }
+.gs-team-btn:hover:not(.rank1):not(.rank2) { border-color:var(--gold); background:rgba(212,137,10,.08); }
+.gs-team-btn.rank1 { border-color:var(--green); background:rgba(30,158,58,.1); color:var(--green); font-weight:700; }
+.gs-team-btn.rank2 { border-color:var(--blue); background:rgba(26,106,191,.1); color:var(--blue); font-weight:700; }
+.gs-team-btn.rank3 { border-color:var(--gold); background:rgba(212,137,10,.1); color:#b56a00; font-weight:700; }
+.gs-team-btn.rank1:hover,.gs-team-btn.rank2:hover,.gs-team-btn.rank3:hover { opacity:.75; }
+.gs-rank-badge { margin-left:auto; font-size:10px; font-weight:700; flex-shrink:0; }
+.gs-seed-sel3 { color:var(--gold); font-weight:700; }
 
-.tc { display:flex; align-items:center; gap:4px; padding:4px 8px; margin-bottom:3px; background:var(--bg2); border:1px solid var(--bd); border-radius:4px; cursor:pointer; user-select:none; font-size:12px; white-space:nowrap; transition:border-color .12s,background .12s,transform .1s; }
-.tc:last-child { margin-bottom:0; }
-.tc:hover { border-color:var(--gold); background:#fffbf0; transform:scale(1.02); }
-.tc:active { transform:scale(.97); }
-.tc.used  { opacity:.35; cursor:default; pointer-events:none; }
-
-.bracket-outer { flex:1; overflow:auto; padding:16px 20px 40px; }
-.bracket-wrap  { display:flex; align-items:stretch; gap:2px; min-height:720px; }
-.bk-half { display:flex; align-items:stretch; gap:0; }
-
-.round-col { display:flex; flex-direction:column; flex-shrink:0; }
-.round-title { text-align:center; font-size:12px; font-weight:700; color:var(--gold); padding:4px 8px; background:rgba(212,137,10,.08); border:1px solid rgba(212,137,10,.3); border-radius:5px; margin-bottom:6px; white-space:nowrap; }
-.round-title sub { font-weight:400; font-size:10px; color:var(--dim); margin-left:3px; }
-.sg  { flex:1; display:flex; flex-direction:column; justify-content:space-around; }
-.sg2 { flex:1; display:grid; grid-template-columns:repeat(2,114px); grid-template-rows:repeat(8,1fr); grid-auto-flow:column; gap:4px; }
-
-.slot { width:114px; height:36px; background:var(--bg); border:1.5px solid var(--bd); border-radius:6px; display:flex; align-items:center; overflow:hidden; position:relative; flex-shrink:0; }
-.slot.filled { border-style:solid; border-color:var(--bdhi); background:var(--bg2); }
-.slot.filled:hover { border-color:var(--gold); }
-.slot-empty { width:100%; text-align:center; font-size:11px; color:var(--bd); pointer-events:none; }
-.slot-team { display:flex; align-items:center; gap:5px; padding:0 22px 0 7px; width:100%; height:100%; cursor:pointer; font-size:12px; user-select:none; transition:background .12s; }
-.slot.filled:hover .slot-team { background:rgba(212,137,10,.06); }
-.slot-x { position:absolute; right:4px; width:14px; height:14px; background:rgba(220,50,50,.85); border-radius:50%; display:none; align-items:center; justify-content:center; font-size:9px; cursor:pointer; color:#fff; flex-shrink:0; }
-.slot.filled:hover .slot-x { display:flex; }
-.slot.is-champ { width:142px; height:64px; border:2px solid var(--gold); border-style:solid; background:#fffbf0; }
-.slot.is-champ .slot-team { flex-direction:column; justify-content:center; font-size:15px; gap:2px; padding:0 18px; text-align:center; }
-.slot.is-champ .slot-empty { color:rgba(212,137,10,.4); font-size:12px; }
-.slot.is-champ:hover { border-color:var(--gold) !important; }
-
-/* Match pair (r32 bracket) */
-.match-pair { display:flex; flex-direction:column; border:1.5px solid var(--bd); border-radius:7px; overflow:hidden; background:var(--bg); }
-.match-pair > .slot { width:100%; border:none; border-radius:0; flex-shrink:1; }
-.match-pair > .slot + .slot { border-top:1px solid var(--bg3); }
-.match-pair > .slot.filled { background:var(--bg2); }
-.match-pair > .slot.filled:hover { border-color:transparent; }
-
-.center-col { display:flex; flex-direction:column; align-items:center; flex-shrink:0; padding:0 10px; }
-.center-inner { flex:1; display:flex; flex-direction:column; justify-content:space-around; align-items:center; width:100%; }
-.champ-block { display:flex; flex-direction:column; align-items:center; gap:4px; }
-.champ-title { text-align:center; font-size:14px; font-weight:700; color:var(--gold); padding:5px 14px; background:rgba(212,137,10,.1); border:1.5px solid var(--gold); border-radius:6px; white-space:nowrap; }
-.champ-title sub { font-weight:400; font-size:10px; color:var(--dim); margin-left:3px; }
-.fin-title { text-align:center; font-size:12px; font-weight:700; color:var(--gold); padding:4px 10px; background:rgba(212,137,10,.08); border:1px solid rgba(212,137,10,.3); border-radius:5px; margin-bottom:6px; white-space:nowrap; }
-.fin-title sub { font-weight:400; font-size:10px; color:var(--dim); margin-left:3px; }
-.arr { color:var(--bd); font-size:20px; align-self:center; user-select:none; flex-shrink:0; padding:0 2px; }
+/* ══════════ BRACKET ══════════ */
+.bracket-outer { flex:1; overflow-y:auto; overflow-x:hidden; padding:10px 14px 40px; }
+.bracket-hint { padding:6px 12px; font-size:12px; color:var(--dim); background:var(--bg2); border-bottom:1px solid var(--bd); flex-shrink:0; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.bracket-hint strong { color:var(--gold); }
+/* Unified bracket container */
+.bracket-unified { overflow-x:auto; padding:8px 4px 12px; }
+/* Horizontal rounds row */
+.half-rounds { display:flex; align-items:stretch; min-height:420px; position:relative; }
+/* Final column */
+.round-col-fin { display:flex; flex-direction:column; align-items:center; width:140px; }
+.round-col-fin .sg { flex:1; display:flex; flex-direction:column; justify-content:center; width:100%; }
+.round-col-fin-champ { display:flex; flex-direction:column; align-items:center; gap:4px; margin-top:8px; width:100%; }
+/* Round column */
+.round-col { display:flex; flex-direction:column; flex-shrink:0; width:126px; }
+.round-title { text-align:center; font-size:11px; font-weight:700; color:var(--gold); padding:3px 6px; background:rgba(212,137,10,.08); border:1px solid rgba(212,137,10,.3); border-radius:5px; margin-bottom:4px; white-space:nowrap; flex-shrink:0; }
+.sg { flex:1; display:flex; flex-direction:column; justify-content:space-around; gap:2px; }
+/* Connector column */
+.bk-conn { flex-shrink:0; width:20px; position:relative; }
+/* Match pair */
+.match-pair { display:flex; flex-direction:column; border:1.5px solid var(--bd); border-radius:6px; overflow:hidden; background:var(--bg); }
+.match-pair.decided { border-color:var(--bdhi); }
+.mp-team { display:flex; align-items:center; gap:4px; padding:3px 6px; height:28px; min-width:0; transition:background .12s; }
+.mp-team.filled { background:var(--bg2); }
+.mp-team.winner { background:rgba(30,158,58,.13); }
+.mp-team.winner .mp-name { color:var(--green); font-weight:700; }
+.mp-team.loser { opacity:.32; }
+.mp-team.clickable { cursor:pointer; }
+.mp-team.clickable:hover { background:rgba(212,137,10,.11); }
+.mp-team.picked { background:rgba(212,137,10,.07); }
+.mp-team + .mp-team { border-top:1px solid var(--bg3); }
+.mp-flag { font-size:11px; flex-shrink:0; }
+.mp-name { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--text); font-size:11px; }
+.mp-empty { width:100%; text-align:center; font-size:10px; color:var(--bd); padding:4px 0; }
+.mp-src { font-size:9px; color:var(--dim); flex-shrink:0; }
+/* R32 team selector */
+.r32-placeholder { flex:1; color:var(--dim); font-size:10px; font-style:italic; padding:0 2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.slot-clear-btn { font-size:9px; padding:0 3px; border:none; background:none; color:var(--dim); cursor:pointer; line-height:1; flex-shrink:0; }
+.slot-clear-btn:hover { color:var(--text); }
+/* Champion */
+.champ-block { display:flex; flex-direction:column; align-items:center; gap:6px; }
+.champ-title { text-align:center; font-size:13px; font-weight:700; color:var(--gold); padding:5px 12px; background:rgba(212,137,10,.1); border:1.5px solid var(--gold); border-radius:6px; white-space:nowrap; }
+.slot-champ { width:120px; min-height:56px; border:2px solid var(--gold); border-radius:8px; background:#fffbf0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:2px; padding:6px; text-align:center; }
+.slot-champ .c-flag { font-size:20px; }
+.slot-champ .c-name { font-size:12px; font-weight:700; color:var(--gold); }
+.slot-champ .c-empty { font-size:11px; color:rgba(212,137,10,.45); }
+.slot-champ .c-empty { font-size:11px; color:rgba(212,137,10,.45); }
 
 /* Toast */
 #toast { position:fixed; bottom:24px; right:24px; background:var(--text); border:1px solid var(--gold); color:#fff; padding:10px 16px; border-radius:8px; font-size:13px; opacity:0; transform:translateY(8px); transition:all .25s; pointer-events:none; z-index:100; box-shadow:0 4px 12px rgba(0,0,0,.15); }
@@ -209,18 +197,18 @@ header { background:var(--bg2); border-bottom:2px solid var(--gold); padding:9px
 
 <header>
   <div>
-    <div class="logo">⚽ 2026 FIFA 世界杯 — 我的预测</div>
-    <div class="tagline">小组赛预测比分 → 自动计算积分榜 → 淘汰赛预测</div>
+    <div class="logo">⚽ 2026 FIFA 世界杯 — 比分预测</div>
+    <div class="tagline">预测小组赛 + 淘汰赛所有比分，自动计算晋级；或在夺冠之路手动输入</div>
   </div>
   <div style="display:flex;gap:6px">
-    <button class="btn" onclick="shareLink()">📤 分享链接</button>
-    <button class="btn" onclick="resetAll()">🔄 重置全部</button>
+    <button class="btn" onclick="shareLink()">📤 分享</button>
+    <button class="btn" onclick="resetAll()">🔄 重置</button>
   </div>
 </header>
 
 <nav class="tabs">
-  <button class="tab-btn active" id="tbg" onclick="switchTab('group')">⚽ 小组赛</button>
-  <button class="tab-btn"        id="tbk" onclick="switchTab('knockout')">🏆 淘汰赛</button>
+  <button class="tab-btn active" id="tbp" onclick="switchTab('predict')">📋 比分预测</button>
+  <button class="tab-btn"        id="tbk" onclick="switchTab('knockout')">🏆 夺冠之路</button>
 </nav>
 
 <div id="shared-banner" style="display:none">
@@ -231,36 +219,34 @@ header { background:var(--bg2); border-bottom:2px solid var(--gold); padding:9px
   </div>
 </div>
 
-<!-- GROUP STAGE PANE -->
-<div id="pane-group" class="tab-pane active">
+<!-- ── TAB 1: 比分预测 ── -->
+<div id="pane-predict" class="tab-pane active">
   <div class="gs-outer">
     <div class="gs-legend">
-      <span><span class="ldot" style="background:#3ecf5e"></span>直接晋级（第1、2名）</span>
-      <span><span class="ldot" style="background:#f5a623"></span>可能晋级（第3名，视最佳第三名排名）</span>
-      <span><span class="ldot" style="background:#2e4464"></span>淘汰（第4名）</span>
+      <span><span class="ldot" style="background:#3ecf5e"></span>直接晋级（1、2名）</span>
+      <span><span class="ldot" style="background:#f5a623"></span>可能晋级（第3名）</span>
+      <span><span class="ldot" style="background:#2e4464"></span>淘汰</span>
     </div>
     <div id="groups-grid" class="groups-grid"></div>
     <div id="thirds-section" class="thirds-card"></div>
+    <div class="ko-wrap">
+      <div class="ko-divider">
+        <div class="ko-div-title">🏆 淘汰赛比分预测</div>
+        <span class="ko-div-hint">填完小组赛后点击生成</span>
+        <button class="btn" onclick="generateKO()" style="padding:4px 14px;font-size:12px">⚡ 生成32强对阵</button>
+      </div>
+      <div id="ko-rounds"></div>
+    </div>
   </div>
 </div>
 
-<!-- KNOCKOUT PANE -->
+<!-- ── TAB 2: 夺冠之路 (X bracket) ── -->
 <div id="pane-knockout" class="tab-pane">
-  <div class="pool-section">
-    <div class="pool-meta">
-      <strong>🌍 分组（点击球队进入32强）</strong>
-      <span id="pool-info">48 支队伍</span>
-      <button class="btn" onclick="autoFillR32()" style="padding:4px 12px;font-size:12px">⚡ 从小组赛生成32强</button>
-      <div class="legend">
-        <span><span class="dot" style="background:#4a9fff"></span>UEFA</span>
-        <span><span class="dot" style="background:#3ecf5e"></span>CONMEBOL</span>
-        <span><span class="dot" style="background:#ff6b4a"></span>CONCACAF</span>
-        <span><span class="dot" style="background:#f5d623"></span>CAF</span>
-        <span><span class="dot" style="background:#ff9f3e"></span>AFC</span>
-        <span><span class="dot" style="background:#cc88ff"></span>OFC</span>
-      </div>
-    </div>
-    <div id="pool" class="groups-rows"></div>
+  <div class="bracket-hint">
+    <strong>🏆 夺冠之路</strong>
+    <span style="color:#aaa">·</span>
+    <span>点击队伍手动选择晋级 · 分组面板选队进入32强 · ✕取消 · 绿色=已晋级</span>
+    <button class="btn" onclick="generateKO();renderBracket()" style="padding:3px 10px;font-size:11px;margin-left:auto">⚡ 从比分预测更新</button>
   </div>
   <div class="bracket-outer">
     <div id="bracket" class="bracket-wrap"></div>
@@ -270,602 +256,885 @@ header { background:var(--bg2); border-bottom:2px solid var(--gold); padding:9px
 <div id="toast"></div>
 
 <script>
-// ── Confederation colors ──────────────────────────────────
-const CC = { UEFA:'#4a9fff', CONMEBOL:'#3ecf5e', CONCACAF:'#ff6b4a', CAF:'#f5d623', AFC:'#ff9f3e', OFC:'#cc88ff' };
-
-// ── Groups & Teams ────────────────────────────────────────
+// ── Data ─────────────────────────────────────────────────
 const GROUPS = [
   { name:'A', left:true, teams:[
-    {id:'mx',name:'墨西哥',      flag:'🇲🇽',conf:'CONCACAF',host:true},
-    {id:'za',name:'南非',        flag:'🇿🇦',conf:'CAF'},
-    {id:'kr',name:'韩国',        flag:'🇰🇷',conf:'AFC'},
-    {id:'cz',name:'捷克',        flag:'🇨🇿',conf:'UEFA'},
+    {id:'mx',name:'墨西哥',    flag:'🇲🇽',conf:'CONCACAF',host:true},
+    {id:'za',name:'南非',      flag:'🇿🇦',conf:'CAF'},
+    {id:'kr',name:'韩国',      flag:'🇰🇷',conf:'AFC'},
+    {id:'cz',name:'捷克',      flag:'🇨🇿',conf:'UEFA'},
   ]},
   { name:'B', left:true, teams:[
-    {id:'ca',name:'加拿大',      flag:'🇨🇦',conf:'CONCACAF',host:true},
-    {id:'ba',name:'波黑',        flag:'🇧🇦',conf:'UEFA'},
-    {id:'qa',name:'卡塔尔',      flag:'🇶🇦',conf:'AFC'},
-    {id:'ch',name:'瑞士',        flag:'🇨🇭',conf:'UEFA'},
+    {id:'ca',name:'加拿大',    flag:'🇨🇦',conf:'CONCACAF',host:true},
+    {id:'ba',name:'波黑',      flag:'🇧🇦',conf:'UEFA'},
+    {id:'qa',name:'卡塔尔',    flag:'🇶🇦',conf:'AFC'},
+    {id:'ch',name:'瑞士',      flag:'🇨🇭',conf:'UEFA'},
   ]},
   { name:'C', left:true, teams:[
-    {id:'br',name:'巴西',        flag:'🇧🇷',conf:'CONMEBOL'},
-    {id:'ma',name:'摩洛哥',      flag:'🇲🇦',conf:'CAF'},
-    {id:'ht',name:'海地',        flag:'🇭🇹',conf:'CONCACAF'},
-    {id:'sc',name:'苏格兰',      flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',conf:'UEFA'},
+    {id:'br',name:'巴西',      flag:'🇧🇷',conf:'CONMEBOL'},
+    {id:'ma',name:'摩洛哥',    flag:'🇲🇦',conf:'CAF'},
+    {id:'ht',name:'海地',      flag:'🇭🇹',conf:'CONCACAF'},
+    {id:'sc',name:'苏格兰',    flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',conf:'UEFA'},
   ]},
   { name:'D', left:true, teams:[
-    {id:'us',name:'美国',        flag:'🇺🇸',conf:'CONCACAF',host:true},
-    {id:'py',name:'巴拉圭',      flag:'🇵🇾',conf:'CONMEBOL'},
-    {id:'au',name:'澳大利亚',    flag:'🇦🇺',conf:'AFC'},
-    {id:'tr',name:'土耳其',      flag:'🇹🇷',conf:'UEFA'},
+    {id:'us',name:'美国',      flag:'🇺🇸',conf:'CONCACAF',host:true},
+    {id:'py',name:'巴拉圭',    flag:'🇵🇾',conf:'CONMEBOL'},
+    {id:'au',name:'澳大利亚',  flag:'🇦🇺',conf:'AFC'},
+    {id:'tr',name:'土耳其',    flag:'🇹🇷',conf:'UEFA'},
   ]},
   { name:'E', left:true, teams:[
-    {id:'de',name:'德国',        flag:'🇩🇪',conf:'UEFA'},
-    {id:'cw',name:'库拉索',      flag:'🇨🇼',conf:'CONCACAF'},
-    {id:'ci',name:'科特迪瓦',    flag:'🇨🇮',conf:'CAF'},
-    {id:'ec',name:'厄瓜多尔',    flag:'🇪🇨',conf:'CONMEBOL'},
+    {id:'de',name:'德国',      flag:'🇩🇪',conf:'UEFA'},
+    {id:'cw',name:'库拉索',    flag:'🇨🇼',conf:'CONCACAF'},
+    {id:'ci',name:'科特迪瓦',  flag:'🇨🇮',conf:'CAF'},
+    {id:'ec',name:'厄瓜多尔',  flag:'🇪🇨',conf:'CONMEBOL'},
   ]},
   { name:'F', left:true, teams:[
-    {id:'nl',name:'荷兰',        flag:'🇳🇱',conf:'UEFA'},
-    {id:'jp',name:'日本',        flag:'🇯🇵',conf:'AFC'},
-    {id:'se',name:'瑞典',        flag:'🇸🇪',conf:'UEFA'},
-    {id:'tn',name:'突尼斯',      flag:'🇹🇳',conf:'CAF'},
+    {id:'nl',name:'荷兰',      flag:'🇳🇱',conf:'UEFA'},
+    {id:'jp',name:'日本',      flag:'🇯🇵',conf:'AFC'},
+    {id:'se',name:'瑞典',      flag:'🇸🇪',conf:'UEFA'},
+    {id:'tn',name:'突尼斯',    flag:'🇹🇳',conf:'CAF'},
   ]},
   { name:'G', left:false, teams:[
-    {id:'be',name:'比利时',      flag:'🇧🇪',conf:'UEFA'},
-    {id:'eg',name:'埃及',        flag:'🇪🇬',conf:'CAF'},
-    {id:'ir',name:'伊朗',        flag:'🇮🇷',conf:'AFC'},
-    {id:'nz',name:'新西兰',      flag:'🇳🇿',conf:'OFC'},
+    {id:'be',name:'比利时',    flag:'🇧🇪',conf:'UEFA'},
+    {id:'eg',name:'埃及',      flag:'🇪🇬',conf:'CAF'},
+    {id:'ir',name:'伊朗',      flag:'🇮🇷',conf:'AFC'},
+    {id:'nz',name:'新西兰',    flag:'🇳🇿',conf:'OFC'},
   ]},
   { name:'H', left:false, teams:[
-    {id:'es',name:'西班牙',      flag:'🇪🇸',conf:'UEFA'},
-    {id:'cv',name:'佛得角',      flag:'🇨🇻',conf:'CAF'},
-    {id:'sa',name:'沙特阿拉伯',  flag:'🇸🇦',conf:'AFC'},
-    {id:'uy',name:'乌拉圭',      flag:'🇺🇾',conf:'CONMEBOL'},
+    {id:'es',name:'西班牙',    flag:'🇪🇸',conf:'UEFA'},
+    {id:'cv',name:'佛得角',    flag:'🇨🇻',conf:'CAF'},
+    {id:'sa',name:'沙特',      flag:'🇸🇦',conf:'AFC'},
+    {id:'uy',name:'乌拉圭',    flag:'🇺🇾',conf:'CONMEBOL'},
   ]},
   { name:'I', left:false, teams:[
-    {id:'fr',name:'法国',        flag:'🇫🇷',conf:'UEFA'},
-    {id:'iq',name:'伊拉克',      flag:'🇮🇶',conf:'AFC'},
-    {id:'no',name:'挪威',        flag:'🇳🇴',conf:'UEFA'},
-    {id:'sn',name:'塞内加尔',    flag:'🇸🇳',conf:'CAF'},
+    {id:'fr',name:'法国',      flag:'🇫🇷',conf:'UEFA'},
+    {id:'iq',name:'伊拉克',    flag:'🇮🇶',conf:'AFC'},
+    {id:'no',name:'挪威',      flag:'🇳🇴',conf:'UEFA'},
+    {id:'sn',name:'塞内加尔',  flag:'🇸🇳',conf:'CAF'},
   ]},
   { name:'J', left:false, teams:[
-    {id:'ar',name:'阿根廷',      flag:'🇦🇷',conf:'CONMEBOL'},
-    {id:'dz',name:'阿尔及利亚',  flag:'🇩🇿',conf:'CAF'},
-    {id:'at',name:'奥地利',      flag:'🇦🇹',conf:'UEFA'},
-    {id:'jo',name:'约旦',        flag:'🇯🇴',conf:'AFC'},
+    {id:'ar',name:'阿根廷',    flag:'🇦🇷',conf:'CONMEBOL'},
+    {id:'dz',name:'阿尔及利亚',flag:'🇩🇿',conf:'CAF'},
+    {id:'at',name:'奥地利',    flag:'🇦🇹',conf:'UEFA'},
+    {id:'jo',name:'约旦',      flag:'🇯🇴',conf:'AFC'},
   ]},
   { name:'K', left:false, teams:[
-    {id:'co',name:'哥伦比亚',    flag:'🇨🇴',conf:'CONMEBOL'},
-    {id:'cd',name:'刚果（金）',  flag:'🇨🇩',conf:'CAF'},
-    {id:'pt',name:'葡萄牙',      flag:'🇵🇹',conf:'UEFA'},
-    {id:'uz',name:'乌兹别克斯坦',flag:'🇺🇿',conf:'AFC'},
+    {id:'co',name:'哥伦比亚',  flag:'🇨🇴',conf:'CONMEBOL'},
+    {id:'cd',name:'刚果（金）',flag:'🇨🇩',conf:'CAF'},
+    {id:'pt',name:'葡萄牙',    flag:'🇵🇹',conf:'UEFA'},
+    {id:'uz',name:'乌兹别克',  flag:'🇺🇿',conf:'AFC'},
   ]},
   { name:'L', left:false, teams:[
-    {id:'hr',name:'克罗地亚',    flag:'🇭🇷',conf:'UEFA'},
-    {id:'en',name:'英格兰',      flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',conf:'UEFA'},
-    {id:'gh',name:'加纳',        flag:'🇬🇭',conf:'CAF'},
-    {id:'pa',name:'巴拿马',      flag:'🇵🇦',conf:'CONCACAF'},
+    {id:'hr',name:'克罗地亚',  flag:'🇭🇷',conf:'UEFA'},
+    {id:'en',name:'英格兰',    flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',conf:'UEFA'},
+    {id:'gh',name:'加纳',      flag:'🇬🇭',conf:'CAF'},
+    {id:'pa',name:'巴拿马',    flag:'🇵🇦',conf:'CONCACAF'},
   ]},
 ];
 const TEAMS = GROUPS.flatMap(g => g.teams);
 
-// ── Match pairs (index into group.teams) & 3-round schedule ──
-// PAIRS[i] = [teamA_idx, teamB_idx], score key = "${group}-${i}"
-const PAIRS = [[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]];
-// Standard round-robin schedule: each round has 2 simultaneous matches
+const PAIRS     = [[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]];
 const GS_ROUNDS = [
-  { label:'第 1 轮', mi:[0, 5] },   // [0v1, 2v3]
-  { label:'第 2 轮', mi:[1, 4] },   // [0v2, 1v3]
-  { label:'第 3 轮', mi:[2, 3] },   // [0v3, 1v2]
+  {label:'第 1 轮', mi:[0,5]},
+  {label:'第 2 轮', mi:[1,4]},
+  {label:'第 3 轮', mi:[2,3]},
 ];
 
-// ── Knockout rounds ───────────────────────────────────────
+// Bracket round definitions (left to right, then right to left for right half)
 const RL = [
-  {id:'r32L', label:'⚽ 32强', count:16, cols:2},
-  {id:'r16L', label:'⚡ 16强', count:8,  cols:1},
-  {id:'qfL',  label:'🔥 八强', count:4,  cols:1},
-  {id:'sfL',  label:'🌟 四强', count:2,  cols:1},
+  {id:'r32L', label:'⚽ 32强', n:8},
+  {id:'r16L', label:'⚡ 16强', n:4},
+  {id:'qfL',  label:'🔥 八强', n:2},
+  {id:'sfL',  label:'🌟 四强', n:1},
 ];
 const RR = [
-  {id:'sfR',  label:'🌟 四强', count:2,  cols:1},
-  {id:'qfR',  label:'🔥 八强', count:4,  cols:1},
-  {id:'r16R', label:'⚡ 16强', count:8,  cols:1},
-  {id:'r32R', label:'⚽ 32强', count:16, cols:2},
+  {id:'sfR',  label:'🌟 四强', n:1},
+  {id:'qfR',  label:'🔥 八强', n:2},
+  {id:'r16R', label:'⚡ 16强', n:4},
+  {id:'r32R', label:'⚽ 32强', n:8},
 ];
-const ROUND_COUNT = { r32L:16,r16L:8,qfL:4,sfL:2, r32R:16,r16R:8,qfR:4,sfR:2, fin:2,champ:1 };
-const NEXT_RID    = { r32L:'r16L',r16L:'qfL',qfL:'sfL', r32R:'r16R',r16R:'qfR',qfR:'sfR', sfL:'fin',sfR:'fin',fin:'champ' };
-const NEXT_LABEL  = { r32L:'16强',r16L:'八强',qfL:'四强',sfL:'决赛', r32R:'16强',r16R:'八强',qfR:'四强',sfR:'决赛', fin:'冠军' };
 
-// ── R32 match pairings (matches 73-88 per official draw) ─────────────────
-// ta/tb: {rank:1|2=group place, grp} or {rank:3, el:[eligible groups for best-3rd]}
+
 const R32_MATCHES = [
-  // Left half (r32L, slots 0-15 as 8 consecutive pairs)
-  {match:73, rid:'r32L', ai:0,  bi:1,  ta:{rank:2,grp:'A'}, tb:{rank:2,grp:'B'}},
-  {match:74, rid:'r32L', ai:2,  bi:3,  ta:{rank:1,grp:'E'}, tb:{rank:3,el:['A','B','C','D','F']}},
-  {match:75, rid:'r32L', ai:4,  bi:5,  ta:{rank:1,grp:'F'}, tb:{rank:2,grp:'C'}},
-  {match:76, rid:'r32L', ai:6,  bi:7,  ta:{rank:1,grp:'C'}, tb:{rank:2,grp:'F'}},
-  {match:79, rid:'r32L', ai:8,  bi:9,  ta:{rank:1,grp:'A'}, tb:{rank:3,el:['C','E','F','H','I']}},
-  {match:81, rid:'r32L', ai:10, bi:11, ta:{rank:1,grp:'D'}, tb:{rank:3,el:['B','E','F','I','J']}},
-  {match:85, rid:'r32L', ai:12, bi:13, ta:{rank:1,grp:'B'}, tb:{rank:3,el:['E','F','G','I','J']}},
-  {match:78, rid:'r32L', ai:14, bi:15, ta:{rank:2,grp:'E'}, tb:{rank:2,grp:'I'}},
-  // Right half (r32R, slots 0-15 as 8 consecutive pairs)
-  {match:77, rid:'r32R', ai:0,  bi:1,  ta:{rank:1,grp:'I'}, tb:{rank:3,el:['C','D','F','G','H']}},
-  {match:82, rid:'r32R', ai:2,  bi:3,  ta:{rank:1,grp:'G'}, tb:{rank:3,el:['A','E','H','I','J']}},
-  {match:80, rid:'r32R', ai:4,  bi:5,  ta:{rank:1,grp:'L'}, tb:{rank:3,el:['E','H','I','J','K']}},
-  {match:87, rid:'r32R', ai:6,  bi:7,  ta:{rank:1,grp:'K'}, tb:{rank:3,el:['D','E','I','J','L']}},
-  {match:88, rid:'r32R', ai:8,  bi:9,  ta:{rank:2,grp:'D'}, tb:{rank:2,grp:'G'}},
-  {match:84, rid:'r32R', ai:10, bi:11, ta:{rank:1,grp:'H'}, tb:{rank:2,grp:'J'}},
-  {match:86, rid:'r32R', ai:12, bi:13, ta:{rank:1,grp:'J'}, tb:{rank:2,grp:'H'}},
-  {match:83, rid:'r32R', ai:14, bi:15, ta:{rank:2,grp:'K'}, tb:{rank:2,grp:'L'}},
+  {rid:'r32L', ai:0,  bi:1,  ta:{rank:2,grp:'A'}, tb:{rank:2,grp:'B'}},
+  {rid:'r32L', ai:2,  bi:3,  ta:{rank:1,grp:'E'}, tb:{rank:3,el:['A','B','C','D','F']}},
+  {rid:'r32L', ai:4,  bi:5,  ta:{rank:1,grp:'F'}, tb:{rank:2,grp:'C'}},
+  {rid:'r32L', ai:6,  bi:7,  ta:{rank:1,grp:'C'}, tb:{rank:2,grp:'F'}},
+  {rid:'r32L', ai:8,  bi:9,  ta:{rank:1,grp:'A'}, tb:{rank:3,el:['C','E','F','H','I']}},
+  {rid:'r32L', ai:10, bi:11, ta:{rank:1,grp:'D'}, tb:{rank:3,el:['B','E','F','I','J']}},
+  {rid:'r32L', ai:12, bi:13, ta:{rank:1,grp:'B'}, tb:{rank:3,el:['E','F','G','I','J']}},
+  {rid:'r32L', ai:14, bi:15, ta:{rank:2,grp:'E'}, tb:{rank:2,grp:'I'}},
+  {rid:'r32R', ai:0,  bi:1,  ta:{rank:1,grp:'I'}, tb:{rank:3,el:['C','D','F','G','H']}},
+  {rid:'r32R', ai:2,  bi:3,  ta:{rank:1,grp:'G'}, tb:{rank:3,el:['A','E','H','I','J']}},
+  {rid:'r32R', ai:4,  bi:5,  ta:{rank:1,grp:'L'}, tb:{rank:3,el:['E','H','I','J','K']}},
+  {rid:'r32R', ai:6,  bi:7,  ta:{rank:1,grp:'K'}, tb:{rank:3,el:['D','E','I','J','L']}},
+  {rid:'r32R', ai:8,  bi:9,  ta:{rank:2,grp:'D'}, tb:{rank:2,grp:'G'}},
+  {rid:'r32R', ai:10, bi:11, ta:{rank:1,grp:'H'}, tb:{rank:2,grp:'J'}},
+  {rid:'r32R', ai:12, bi:13, ta:{rank:1,grp:'J'}, tb:{rank:2,grp:'H'}},
+  {rid:'r32R', ai:14, bi:15, ta:{rank:2,grp:'K'}, tb:{rank:2,grp:'L'}},
+];
+
+const KO_ROUNDS = [
+  {label:'⚽ 32强', parts:[{rid:'r32L',n:8},{rid:'r32R',n:8}]},
+  {label:'⚡ 16强', parts:[{rid:'r16L',n:4},{rid:'r16R',n:4}]},
+  {label:'🔥 八强', parts:[{rid:'qfL', n:2},{rid:'qfR', n:2}]},
+  {label:'🌟 四强', parts:[{rid:'sfL', n:1},{rid:'sfR', n:1}]},
+  {label:'🥈 决赛', parts:[{rid:'fin', n:1}]},
 ];
 
 // ── State ─────────────────────────────────────────────────
-let slots  = {};   // knockout bracket
-let scores = {};   // group stage predicted scores  { 'A-0': {h:2,a:1}, ... }
+let slots   = {};  // bracket positions { 'r32L-0': 'mx', ... }
+let scores  = {};  // group stage { 'A-0': {h,a}, ... }
+let kscores = {};  // ko match scores { 'r32L-m0': {a,b,tw}, ... }
+let picks   = {};  // manual bracket picks { 'r32L-m0': 'mx', ... }
 
-function save()       { localStorage.setItem('wc26_br',  JSON.stringify(slots));  }
-function load()       { try { slots  = JSON.parse(localStorage.getItem('wc26_br') ||'{}'); } catch{ slots={}; } }
-function saveScores() { localStorage.setItem('wc26_sc',  JSON.stringify(scores)); }
-function loadScores() { try { scores = JSON.parse(localStorage.getItem('wc26_sc')||'{}'); } catch{ scores={}; } }
-function byId(id)     { return TEAMS.find(t=>t.id===id); }
-function placed()     { return new Set(Object.values(slots).filter(Boolean)); }
+function save()        { localStorage.setItem('wc26_br', JSON.stringify(slots));   }
+function load()        { try { slots   = JSON.parse(localStorage.getItem('wc26_br') ||'{}'); } catch{slots={};} }
+function saveScores()  { localStorage.setItem('wc26_sc', JSON.stringify(scores));  }
+function loadScores()  { try { scores  = JSON.parse(localStorage.getItem('wc26_sc')||'{}'); } catch{scores={};} }
+function saveKScores() { localStorage.setItem('wc26_ks', JSON.stringify(kscores)); }
+function loadKScores() { try { kscores = JSON.parse(localStorage.getItem('wc26_ks')||'{}'); } catch{kscores={};} }
+function savePicks()   { localStorage.setItem('wc26_pk', JSON.stringify(picks));   }
+function loadPicks()   { try { picks   = JSON.parse(localStorage.getItem('wc26_pk')||'{}'); } catch{picks={};} }
+function byId(id)      { return TEAMS.find(t=>t.id===id); }
 
-// ── Toast ─────────────────────────────────────────────────
 let _tt;
+let _bkCollapsed = {}; // persists section collapse state across re-renders
 function toast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg; el.classList.add('on');
-  clearTimeout(_tt); _tt = setTimeout(()=>el.classList.remove('on'), 2000);
+  const el=document.getElementById('toast');
+  el.textContent=msg; el.classList.add('on');
+  clearTimeout(_tt); _tt=setTimeout(()=>el.classList.remove('on'),2400);
 }
 
-// ── Tabs ──────────────────────────────────────────────────
 function switchTab(t) {
   document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('pane-'+t).classList.add('active');
   document.getElementById('tb'+t[0]).classList.add('active');
-  if (t==='knockout') { renderPool(); renderBracket(); }
+  if(t==='knockout') renderBracket();
 }
 
-// ══════════ GROUP STAGE LOGIC ══════════
+// ══════════ GROUP STAGE ══════════
 
 function getStandings(grpName) {
-  const g  = GROUPS.find(x=>x.name===grpName);
-  const st = g.teams.map(t=>({...t, p:0,w:0,d:0,l:0,gf:0,ga:0,gd:0,pts:0}));
-  PAIRS.forEach(([i,j],mi) => {
-    const s = scores[`${grpName}-${mi}`];
-    if (!s || s.h==null || s.a==null) return;
-    const h=+s.h, a=+s.a;
-    st[i].p++; st[j].p++;
-    st[i].gf+=h; st[i].ga+=a;
-    st[j].gf+=a; st[j].ga+=h;
-    if (h>a)      { st[i].w++; st[i].pts+=3; st[j].l++; }
-    else if (h<a) { st[j].w++; st[j].pts+=3; st[i].l++; }
-    else          { st[i].d++; st[i].pts++; st[j].d++; st[j].pts++; }
+  const g=GROUPS.find(x=>x.name===grpName);
+  const st=g.teams.map(t=>({...t,p:0,w:0,d:0,l:0,gf:0,ga:0,gd:0,pts:0}));
+  PAIRS.forEach(([i,j],mi)=>{
+    const s=scores[`${grpName}-${mi}`];
+    if(!s||s.h==null||s.a==null)return;
+    const h=+s.h,a=+s.a;
+    st[i].p++;st[j].p++;st[i].gf+=h;st[i].ga+=a;st[j].gf+=a;st[j].ga+=h;
+    if(h>a){st[i].w++;st[i].pts+=3;st[j].l++;}
+    else if(h<a){st[j].w++;st[j].pts+=3;st[i].l++;}
+    else{st[i].d++;st[i].pts++;st[j].d++;st[j].pts++;}
   });
   st.forEach(t=>t.gd=t.gf-t.ga);
   return [...st].sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf);
 }
 
 function buildStandingsHTML(st) {
-  const qcls = ['sq1 st-q1','sq2 st-q2','sq3 st-q3',''];
-  const hdr = `<div class="st-row st-hdr">
-    <span class="sn">#</span><span class="steam">球队</span>
-    <span class="sv">积</span><span class="sv">W</span><span class="sv">D</span><span class="sv">L</span><span class="sv">净</span>
-  </div>`;
-  return hdr + st.map((t,r)=>{
-    const gd = t.gd>0?'+'+t.gd:t.gd;
-    return `<div class="st-row ${qcls[r]}">
-      <span class="sn">${r+1}</span>
-      <span class="steam">${t.flag} ${t.name}</span>
-      <span class="sv sp">${t.pts}</span>
-      <span class="sv">${t.w}</span><span class="sv">${t.d}</span><span class="sv">${t.l}</span>
-      <span class="sv">${gd}</span>
-    </div>`;
-  }).join('');
+  const qcls=['sq1 st-q1','sq2 st-q2','sq3 st-q3',''];
+  return `<div class="st-row st-hdr"><span class="sn">#</span><span class="steam">球队</span><span class="sv">积</span><span class="sv">W</span><span class="sv">D</span><span class="sv">L</span><span class="sv">净</span></div>`
+    +st.map((t,r)=>{const gd=t.gd>0?'+'+t.gd:t.gd;return`<div class="st-row ${qcls[r]}"><span class="sn">${r+1}</span><span class="steam">${t.flag} ${t.name}</span><span class="sv sp">${t.pts}</span><span class="sv">${t.w}</span><span class="sv">${t.d}</span><span class="sv">${t.l}</span><span class="sv">${gd}</span></div>`;}).join('');
 }
 
 function getAllThirds() {
-  return GROUPS.map(g=>{
-    const st=getStandings(g.name);
-    return {...st[2], srcGroup:g.name};
-  }).sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf);
+  return GROUPS.map(g=>{const st=getStandings(g.name);return{...st[2],srcGroup:g.name};})
+    .sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf);
 }
 
 function renderGroupStage() {
-  const grid = document.getElementById('groups-grid');
-  grid.innerHTML = '';
-  GROUPS.forEach(g => grid.appendChild(buildGroupCard(g)));
+  const grid=document.getElementById('groups-grid');
+  grid.innerHTML='';
+  GROUPS.forEach(g=>grid.appendChild(buildGroupCard(g)));
   renderThirdsSection();
 }
 
-function buildGroupCard(g) {
-  const card = document.createElement('div');
-  card.className = 'gs-card';
-  card.dataset.group = g.name;
+let _rkoTimer;
+function scheduleRecomputeKO(){clearTimeout(_rkoTimer);_rkoTimer=setTimeout(recomputeKO,350);}
 
-  // Header
-  const hdr = document.createElement('div');
-  hdr.className = 'gs-card-hdr '+(g.left?'left':'right');
-  hdr.textContent = (g.left?'▶ ':'◀ ')+g.name+'组';
-  card.appendChild(hdr);
-
-  // Standings (updatable region)
-  const stDiv = document.createElement('div');
-  stDiv.className = 'gs-standings';
-  stDiv.innerHTML = buildStandingsHTML(getStandings(g.name));
-  card.appendChild(stDiv);
-
-  // Matches grouped by round (static DOM, inputs persist)
-  const mDiv = document.createElement('div');
-  mDiv.className = 'gs-matches';
-
-  GS_ROUNDS.forEach(rd => {
-    const lbl = document.createElement('div');
-    lbl.className = 'gs-round-lbl';
-    lbl.textContent = rd.label;
-    mDiv.appendChild(lbl);
-
-    rd.mi.forEach(mi => {
-      const [i, j] = PAIRS[mi];
-      const sid  = `${g.name}-${mi}`;
-      const s    = scores[sid] || {};
-      const ta   = g.teams[i], tb = g.teams[j];
-
-      const row = document.createElement('div');
-      row.className = 'gs-match' + (s.h!=null&&s.a!=null?' done':'');
-
-      const makeInp = (side) => {
-        const inp = document.createElement('input');
-        inp.type='number'; inp.min='0'; inp.className='score-inp'; inp.placeholder='?';
-        const val = s[side];
-        if (val!=null) inp.value = val;
-        inp.addEventListener('input', () => {
-          if (!scores[sid]) scores[sid]={};
-          const v = inp.value.trim();
-          scores[sid][side] = v==='' ? null : Math.max(0, parseInt(v)||0);
-          if (scores[sid].h==null && scores[sid].a==null) delete scores[sid];
-          saveScores();
-          const c = document.querySelector(`.gs-card[data-group="${g.name}"]`);
-          if (c) {
-            c.querySelector('.gs-standings').innerHTML = buildStandingsHTML(getStandings(g.name));
-            row.classList.toggle('done', scores[sid]?.h!=null && scores[sid]?.a!=null);
-          }
-          renderThirdsSection();
-        });
-        return inp;
-      };
-
-      const lSpan = document.createElement('span');
-      lSpan.className = 'gm-l'; lSpan.textContent = `${ta.flag} ${ta.name}`;
-      const sep = document.createElement('span');
-      sep.className = 'gm-sep'; sep.textContent = ':';
-      const rSpan = document.createElement('span');
-      rSpan.className = 'gm-r'; rSpan.textContent = `${tb.name} ${tb.flag}`;
-
-      row.appendChild(lSpan);
-      row.appendChild(makeInp('h'));
-      row.appendChild(sep);
-      row.appendChild(makeInp('a'));
-      row.appendChild(rSpan);
-      mDiv.appendChild(row);
-    });
-  });
-  card.appendChild(mDiv);
-  return card;
-}
-
-function renderThirdsSection() {
-  const el = document.getElementById('thirds-section');
-  if (!el) return;
-  const thirds = getAllThirds();
-  let html = `<div class="thirds-title">🥉 各组第三名排名 <span>前8名晋级32强</span></div>
-  <div class="thirds-grid">`;
-  thirds.forEach((t,idx)=>{
-    const adv = idx<8;
-    const gd  = t.gd>0?'+'+t.gd:t.gd;
-    html += `<div class="third-row${adv?' adv':''}">
-      <span class="trn">${idx+1}</span>
-      <span class="trg">${t.srcGroup}</span>
-      <span class="trt">${t.flag} ${t.name}</span>
-      <span class="trp">${t.pts}分 ${gd}</span>
-      ${adv?'<span class="trbadge">晋级</span>':''}
-    </div>`;
-  });
-  html += '</div>';
-  el.innerHTML = html;
-}
-
-// ══════════ KNOCKOUT LOGIC ══════════
-
-function advance(tid, fromRid) {
-  const t = byId(tid);
-  const nextRid = NEXT_RID[fromRid];
-  if (!nextRid) { toast(`🏆 ${t.name} 已是最终冠军！`); return; }
-
-  let targetSid;
-  if (fromRid==='sfL') {
-    if (slots['fin-0']===tid) { toast(`${t.name} 已在决赛`); return; }
-    if (slots['fin-0'])       { toast('决赛席位已满'); return; }
-    targetSid = 'fin-0';
-  } else if (fromRid==='sfR') {
-    if (slots['fin-1']===tid) { toast(`${t.name} 已在决赛`); return; }
-    if (slots['fin-1'])       { toast('决赛席位已满'); return; }
-    targetSid = 'fin-1';
-  } else if (fromRid==='fin') {
-    if (slots['champ-0']===tid) { toast(`🏆 ${t.name} 已是冠军`); return; }
-    if (slots['champ-0'])       { toast('冠军席位已满'); return; }
-    targetSid = 'champ-0';
-  } else {
-    const cnt = ROUND_COUNT[nextRid];
-    for (let i=0;i<cnt;i++) if (slots[`${nextRid}-${i}`]===tid) { toast(`${t.name} 已在下一轮`); return; }
-    targetSid = null;
-    for (let i=0;i<cnt;i++) if (!slots[`${nextRid}-${i}`]) { targetSid=`${nextRid}-${i}`; break; }
-    if (!targetSid) { toast('下一轮已满，请先移除队伍'); return; }
-  }
-  slots[targetSid]=tid; save(); renderBracket(); renderPool();
-  toast(`${t.name} 晋级！`);
-}
-
-function addToR32(tid) {
-  const t   = byId(tid);
-  const grp = GROUPS.find(g=>g.teams.find(t2=>t2.id===tid));
-  const rid = grp.left?'r32L':'r32R';
-  const cnt = ROUND_COUNT[rid];
-  for (let i=0;i<cnt;i++) if (slots[`${rid}-${i}`]===tid) { toast(`${t.name} 已在32强`); return; }
-  let targetSid=null;
-  for (let i=0;i<cnt;i++) if (!slots[`${rid}-${i}`]) { targetSid=`${rid}-${i}`; break; }
-  if (!targetSid) { toast('32强已满，请先移除队伍'); return; }
-  slots[targetSid]=tid; save(); renderBracket(); renderPool();
-  toast(`${t.name} 进入32强`);
-}
-
-function autoFillR32() {
-  // Calculate current group standings
-  const st = {};
-  GROUPS.forEach(g => { st[g.name] = getStandings(g.name); });
-
-  // Rank all 12 third-place teams
-  const allThirds = GROUPS.map(g => ({...st[g.name][2], srcGroup:g.name}))
-    .sort((a,b) => b.pts-a.pts || b.gd-a.gd || b.gf-a.gf);
-  const top8 = allThirds.slice(0, 8);
-
-  // Assign 3rd-place teams: process most-constrained match first
-  const thirdSlots = R32_MATCHES
-    .filter(m => m.tb.rank === 3)
-    .map(m => ({ sid:`${m.rid}-${m.bi}`, eligible: top8.filter(t => m.tb.el.includes(t.srcGroup)) }))
-    .sort((a,b) => a.eligible.length - b.eligible.length);
-  const used = new Set();
-  const thirds = {};
-  thirdSlots.forEach(({sid, eligible}) => {
-    for (const t of eligible) {
-      if (!used.has(t.id)) { thirds[sid] = t.id; used.add(t.id); break; }
-    }
-  });
-
-  // Rebuild r32 slots; keep r16 and beyond unchanged
-  const newSlots = {};
-  Object.entries(slots).forEach(([k,v]) => { if (!k.startsWith('r32')) newSlots[k] = v; });
-  R32_MATCHES.forEach(m => {
-    const sidA = `${m.rid}-${m.ai}`, sidB = `${m.rid}-${m.bi}`;
-    const tA = st[m.ta.grp][m.ta.rank - 1];
-    if (tA) newSlots[sidA] = tA.id;
-    if (m.tb.rank <= 2) {
-      const tB = st[m.tb.grp][m.tb.rank - 1];
-      if (tB) newSlots[sidB] = tB.id;
-    } else if (thirds[sidB]) {
-      newSlots[sidB] = thirds[sidB];
-    }
-  });
-
-  slots = newSlots;
-  save(); renderBracket(); renderPool();
-  toast('已根据小组赛成绩生成32强！');
-}
-
-function renderPool() {
-  const pool = document.getElementById('pool');
-  if (!pool) return;
-  const used = placed();
-  document.getElementById('pool-info').textContent =
-    `${TEAMS.length-used.size} / ${TEAMS.length} 支队伍未晋级`;
-  pool.innerHTML='';
-  ['left','right'].forEach(side=>{
-    const row=document.createElement('div'); row.className='groups-row';
-    GROUPS.filter(g=>g.left===(side==='left')).forEach(g=>{
-      const card=document.createElement('div'); card.className='group-card';
-      const hdr=document.createElement('div'); hdr.className='group-hdr '+side;
-      hdr.textContent=(side==='left'?'▶ ':'◀ ')+g.name+'组';
-      card.appendChild(hdr);
-      g.teams.forEach(t=>{
-        const isUsed=used.has(t.id);
-        const el=document.createElement('div');
-        el.className='tc'+(isUsed?' used':'');
-        el.title=isUsed?`${t.name} 已晋级`:`点击 → ${t.name} 进入32强`;
-        el.innerHTML=`<span class="dot" style="background:${CC[t.conf]}"></span><span>${t.flag}</span><span>${t.name}</span>`+(t.host?'<span style="font-size:9px;color:var(--gold)">★</span>':'');
-        if (!isUsed) el.addEventListener('click',()=>addToR32(t.id));
-        card.appendChild(el);
-      });
-      row.appendChild(card);
-    });
-    pool.appendChild(row);
-  });
-}
-
-function mkArr(c) {
-  const a=document.createElement('div'); a.className='arr'; a.textContent=c; return a;
-}
-
-function renderBracket() {
-  const bk=document.getElementById('bracket');
-  if (!bk) return;
-  bk.innerHTML='';
-
-  const lh=document.createElement('div'); lh.className='bk-half';
-  RL.forEach((r,i)=>{ if(i>0)lh.appendChild(mkArr('›')); lh.appendChild(makeRoundCol(r)); });
-  bk.appendChild(lh);
-  bk.appendChild(mkArr('›'));
-
-  const cc=document.createElement('div'); cc.className='center-col';
-  const finFilled=['fin-0','fin-1'].filter(k=>slots[k]).length;
-  const fh=document.createElement('div'); fh.className='fin-title';
-  fh.innerHTML=`🥈 决赛<sub>${finFilled}/2</sub>`;
-  cc.appendChild(fh);
-  const ci=document.createElement('div'); ci.className='center-inner';
-  ci.appendChild(makeSlot('fin-0',false,'fin'));
-  const cb=document.createElement('div'); cb.className='champ-block';
-  const ct=document.createElement('div'); ct.className='champ-title';
-  ct.innerHTML=`🏆 冠军<sub>${slots['champ-0']?1:0}/1</sub>`;
-  cb.appendChild(ct); cb.appendChild(makeSlot('champ-0',true,'champ')); ci.appendChild(cb);
-  ci.appendChild(makeSlot('fin-1',false,'fin'));
-  cc.appendChild(ci); bk.appendChild(cc);
-  bk.appendChild(mkArr('‹'));
-
-  const rh=document.createElement('div'); rh.className='bk-half';
-  RR.forEach((r,i)=>{ if(i>0)rh.appendChild(mkArr('‹')); rh.appendChild(makeRoundCol(r)); });
-  bk.appendChild(rh);
-}
-
-function makeRoundCol(r) {
-  const col=document.createElement('div'); col.className='round-col';
-  const filled=Object.keys(slots).filter(k=>k.startsWith(r.id+'-')&&slots[k]).length;
-  const hdr=document.createElement('div'); hdr.className='round-title';
-  hdr.innerHTML=r.label+`<sub>${filled}/${r.count}</sub>`;
-  col.appendChild(hdr);
-  const grid=document.createElement('div');
-  if (r.id==='r32L' || r.id==='r32R') {
-    grid.className='sg';
-    R32_MATCHES.filter(m=>m.rid===r.id).forEach(m=>{
-      const pair=document.createElement('div'); pair.className='match-pair';
-      pair.appendChild(makeSlot(`${r.id}-${m.ai}`,false,r.id));
-      pair.appendChild(makeSlot(`${r.id}-${m.bi}`,false,r.id));
-      grid.appendChild(pair);
-    });
-  } else {
-    grid.className=r.cols>1?'sg2':'sg';
-    for(let n=0;n<r.count;n++) grid.appendChild(makeSlot(`${r.id}-${n}`,false,r.id));
-  }
-  col.appendChild(grid); return col;
-}
-
-function makeSlot(sid,isChamp,rid) {
+function makeScoreSpin(initVal,disabled,onChange){
   const el=document.createElement('div');
-  const tid=slots[sid];
-  el.className='slot'+(tid?' filled':'')+(isChamp?' is-champ':'');
-  if (tid) {
-    const t=byId(tid);
-    const inner=document.createElement('div'); inner.className='slot-team';
-    inner.title=NEXT_LABEL[rid]?`点击 → ${t.name} 晋级${NEXT_LABEL[rid]}`:`🏆 ${t.name}`;
-    inner.innerHTML=isChamp?`<span style="font-size:18px">${t.flag}</span><span>${t.name}</span>`:`<span>${t.flag}</span><span>${t.name}</span>`;
-    inner.addEventListener('click',e=>{ e.stopPropagation(); advance(tid,rid); });
-    const x=document.createElement('div'); x.className='slot-x'; x.textContent='✕'; x.title='移除';
-    x.addEventListener('click',e=>{ e.stopPropagation(); delete slots[sid]; save(); renderBracket(); renderPool(); });
-    el.appendChild(inner); el.appendChild(x);
-  } else {
-    el.innerHTML=`<div class="slot-empty">—</div>`;
-  }
+  el.className='score-spin'+(disabled?' disabled':'')+(initVal==null?' empty':'');
+  if(!disabled)el.tabIndex=0;
+  el.textContent=initVal!=null?String(initVal):'?';
+  if(disabled)return el;
+  const set=(n)=>{el.textContent=String(n);el.classList.remove('empty');onChange(n);};
+  const clr=()=>{el.textContent='?';el.classList.add('empty');onChange(null);};
+  el.addEventListener('wheel',(e)=>{
+    e.preventDefault();
+    const cur=el.classList.contains('empty')?0:parseInt(el.textContent);
+    set(Math.min(9,Math.max(0,cur+(e.deltaY<0?1:-1))));
+  },{passive:false});
+  el.addEventListener('keydown',(e)=>{
+    if(e.key>='0'&&e.key<='9'){e.preventDefault();set(parseInt(e.key));}
+    else if(e.key==='ArrowUp'){e.preventDefault();set(Math.min(9,(el.classList.contains('empty')?-1:parseInt(el.textContent))+1));}
+    else if(e.key==='ArrowDown'){e.preventDefault();set(Math.max(0,(el.classList.contains('empty')?1:parseInt(el.textContent))-1));}
+    else if(e.key==='Backspace'||e.key==='Delete'){e.preventDefault();clr();}
+  });
+  el.addEventListener('click',()=>el.focus());
   return el;
 }
 
-function resetAll() {
-  if (!confirm('确定要清除所有预测（含小组赛比分和淘汰赛）？')) return;
-  slots={}; scores={};
-  save(); saveScores();
-  renderGroupStage();
-  renderPool(); renderBracket();
+function buildGroupCard(g) {
+  const card=document.createElement('div');card.className='gs-card';card.dataset.group=g.name;
+  const hdr=document.createElement('div');hdr.className='gs-card-hdr '+(g.left?'left':'right');
+  hdr.textContent=(g.left?'▶ ':'◀ ')+g.name+'组';card.appendChild(hdr);
+  const stDiv=document.createElement('div');stDiv.className='gs-standings';
+  stDiv.innerHTML=buildStandingsHTML(getStandings(g.name));card.appendChild(stDiv);
+  const mDiv=document.createElement('div');mDiv.className='gs-matches';
+  GS_ROUNDS.forEach(rd=>{
+    const lbl=document.createElement('div');lbl.className='gs-round-lbl';lbl.textContent=rd.label;mDiv.appendChild(lbl);
+    rd.mi.forEach(mi=>{
+      const [i,j]=PAIRS[mi],sid=`${g.name}-${mi}`,s=scores[sid]||{};
+      const ta=g.teams[i],tb=g.teams[j];
+      const row=document.createElement('div');row.className='gs-match'+(s.h!=null&&s.a!=null?' done':'');
+      const makeInp=side=>makeScoreSpin(s[side]??null,false,v=>{
+        if(!scores[sid])scores[sid]={};
+        scores[sid][side]=v;
+        if(scores[sid].h==null&&scores[sid].a==null)delete scores[sid];
+        saveScores();
+        const c=document.querySelector(`.gs-card[data-group="${g.name}"]`);
+        if(c)c.querySelector('.gs-standings').innerHTML=buildStandingsHTML(getStandings(g.name));
+        row.classList.toggle('done',scores[sid]?.h!=null&&scores[sid]?.a!=null);
+        renderThirdsSection();
+      });
+      const lSpan=document.createElement('span');lSpan.className='gm-l';lSpan.textContent=`${ta.flag} ${ta.name}`;
+      const sep=document.createElement('span');sep.className='gm-sep';sep.textContent=':';
+      const rSpan=document.createElement('span');rSpan.className='gm-r';rSpan.textContent=`${tb.name} ${tb.flag}`;
+      row.appendChild(lSpan);row.appendChild(makeInp('h'));row.appendChild(sep);row.appendChild(makeInp('a'));row.appendChild(rSpan);
+      mDiv.appendChild(row);
+    });
+  });
+  card.appendChild(mDiv);return card;
+}
+
+function renderThirdsSection() {
+  const el=document.getElementById('thirds-section');if(!el)return;
+  const thirds=getAllThirds();
+  let html=`<div class="thirds-title">🥉 各组第三名排名 <span>前8名晋级32强</span></div><div class="thirds-grid">`;
+  thirds.forEach((t,idx)=>{
+    const adv=idx<8,gd=t.gd>0?'+'+t.gd:t.gd;
+    html+=`<div class="third-row${adv?' adv':''}"><span class="trn">${idx+1}</span><span class="trg">${t.srcGroup}</span><span class="trt">${t.flag} ${t.name}</span><span class="trp">${t.pts}分 ${gd}</span>${adv?'<span class="trbadge">晋级</span>':''}</div>`;
+  });
+  el.innerHTML=html+'</div>';
+}
+
+// ══════════ KNOCKOUT ══════════
+
+// Returns {winId, source} — kscores take priority, then picks
+// kscores fields: a, b (RT scores), eta, etb (ET additional goals), pk (penalty winner id)
+function getKOWinner(rid, mi) {
+  const sidA=`${rid}-${mi*2}`, sidB=`${rid}-${mi*2+1}`;
+  const tA=slots[sidA], tB=slots[sidB];
+  if(!tA||!tB) return {winId:null,source:null};
+  const ks=kscores[`${rid}-m${mi}`]||{};
+  if(ks.a!=null&&ks.b!=null){
+    const sa=+ks.a, sb=+ks.b;
+    if(sa!==sb) return {winId:sa>sb?tA:tB, source:'score'};
+    // Regular time draw — check extra time
+    if(ks.eta!=null&&ks.etb!=null){
+      const ea=sa+ +ks.eta, eb=sb+ +ks.etb;
+      if(ea!==eb) return {winId:ea>eb?tA:tB, source:'score'};
+      // ET also drawn — check penalty shootout
+      const pkId=ks.pk;
+      if(pkId===tA||pkId===tB) return {winId:pkId, source:'score'};
+    }
+  }
+  const pk=picks[`${rid}-m${mi}`];
+  if(pk===tA||pk===tB) return {winId:pk, source:'pick'};
+  return {winId:null, source:null};
+}
+
+function recomputeKO() {
+  const chain=[
+    {from:'r32L',to:'r16L',n:8},{from:'r32R',to:'r16R',n:8},
+    {from:'r16L',to:'qfL', n:4},{from:'r16R',to:'qfR', n:4},
+    {from:'qfL', to:'sfL', n:2},{from:'qfR', to:'sfR', n:2},
+    {from:'sfL', n:1,gt:()=>'fin-0'},{from:'sfR',n:1,gt:()=>'fin-1'},
+    {from:'fin', n:1,gt:()=>'champ-0'},
+  ];
+  chain.forEach(({from,to,n,gt})=>{
+    for(let mi=0;mi<n;mi++){
+      const dst=gt?gt():`${to}-${mi}`;
+      const {winId}=getKOWinner(from,mi);
+      if(winId) slots[dst]=winId; else delete slots[dst];
+    }
+  });
+  save(); renderInlineKO();
+  if(document.getElementById('pane-knockout').classList.contains('active')) renderBracket();
+}
+
+function makeKOMatch(rid,mi) {
+  const sidA=`${rid}-${mi*2}`,sidB=`${rid}-${mi*2+1}`;
+  const tA=slots[sidA]?byId(slots[sidA]):null;
+  const tB=slots[sidB]?byId(slots[sidB]):null;
+  const mkey=`${rid}-m${mi}`,ks=kscores[mkey]||{};
+  const hasRT=ks.a!=null&&ks.b!=null;
+
+  // Determine result stage
+  let rtDraw=false,etDraw=false,winTeam=null;
+  if(hasRT&&tA&&tB){
+    const sa=+ks.a,sb=+ks.b;
+    if(sa>sb) winTeam=tA;
+    else if(sb>sa) winTeam=tB;
+    else {
+      rtDraw=true;
+      if(ks.eta!=null&&ks.etb!=null){
+        const ea=sa+ +ks.eta,eb=sb+ +ks.etb;
+        if(ea>eb) winTeam=tA;
+        else if(eb>ea) winTeam=tB;
+        else {
+          etDraw=true;
+          if(ks.pk===tA.id) winTeam=tA;
+          else if(ks.pk===tB.id) winTeam=tB;
+        }
+      }
+    }
+  }
+
+  const wrap=document.createElement('div');
+  wrap.className='ko-match'+(winTeam?' decided':rtDraw?' tied':'');
+
+  // updateETVis is assigned after etDiv/pkDiv are created (closure captures the let binding)
+  let updateETVis=()=>{};
+
+  const onRT=(side,v)=>{
+    if(!kscores[mkey])kscores[mkey]={};
+    kscores[mkey][side]=v;
+    if(kscores[mkey].a==null&&kscores[mkey].b==null)delete kscores[mkey];
+    else{delete kscores[mkey].eta;delete kscores[mkey].etb;delete kscores[mkey].pk;}
+    saveKScores();updateETVis();scheduleRecomputeKO();
+  };
+  const onET=(side,v)=>{
+    if(!kscores[mkey])kscores[mkey]={};
+    kscores[mkey][side]=v;
+    delete kscores[mkey].pk;
+    saveKScores();updateETVis();scheduleRecomputeKO();
+  };
+
+  // ── Main row ──────────────────────────────────────────────
+  const main=document.createElement('div');main.className='ko-main';
+  const lSpan=document.createElement('span');
+  lSpan.className='ko-tl'+(winTeam===tA?' ko-win':winTeam===tB?' ko-lose':'');
+  if(tA) lSpan.textContent=`${tA.flag} ${tA.name}`;
+  else   lSpan.innerHTML='<span class="ko-empty-team">—</span>';
+  const spinA=makeScoreSpin(ks.a??null,!tA||!tB,v=>onRT('a',v));
+  const sep=document.createElement('span');sep.className='gm-sep';sep.textContent=':';
+  const spinB=makeScoreSpin(ks.b??null,!tA||!tB,v=>onRT('b',v));
+  const rSpan=document.createElement('span');
+  rSpan.className='ko-tr'+(winTeam===tB?' ko-win':winTeam===tA?' ko-lose':'');
+  if(tB) rSpan.textContent=`${tB.name} ${tB.flag}`;
+  else   rSpan.innerHTML='<span class="ko-empty-team">—</span>';
+  main.appendChild(lSpan);main.appendChild(spinA);main.appendChild(sep);main.appendChild(spinB);main.appendChild(rSpan);
+  wrap.appendChild(main);
+
+  // ── Extra Time row (shown when RT is draw) ─────────────────
+  const etDiv=document.createElement('div');
+  etDiv.className='ko-et';etDiv.style.display=rtDraw?'flex':'none';
+  const etLbl=document.createElement('span');etLbl.className='ko-et-lbl';etLbl.textContent='加时赛:';
+  const etSpinA=makeScoreSpin(ks.eta??null,!tA||!tB,v=>onET('eta',v));
+  const etSep=document.createElement('span');etSep.className='gm-sep';etSep.style.fontSize='11px';etSep.textContent=':';
+  const etSpinB=makeScoreSpin(ks.etb??null,!tA||!tB,v=>onET('etb',v));
+  const etHint=document.createElement('span');etHint.className='ko-et-hint';
+  etHint.textContent=winTeam&&!etDraw?`→ ${winTeam.name} 加时晋级`:etDraw?'→ 点球大战':'请填写加时赛比分';
+  etDiv.appendChild(etLbl);etDiv.appendChild(etSpinA);etDiv.appendChild(etSep);etDiv.appendChild(etSpinB);etDiv.appendChild(etHint);
+  wrap.appendChild(etDiv);
+
+  // ── Penalty row (shown when ET is also draw) ───────────────
+  const pkDiv=document.createElement('div');
+  pkDiv.className='ko-pk';pkDiv.style.display=etDraw?'flex':'none';
+  const pkLbl=document.createElement('span');pkLbl.className='ko-pk-lbl';pkLbl.textContent='点球大战:';
+  pkDiv.appendChild(pkLbl);
+  if(tA&&tB){
+    const mkPkBtn=(team)=>{
+      const btn=document.createElement('button');
+      btn.className='pk-btn'+(ks.pk===team.id?' chosen':'');
+      btn.textContent=`${team.flag} ${team.name}`;
+      btn.addEventListener('click',()=>{
+        if(!kscores[mkey])kscores[mkey]={};
+        kscores[mkey].pk=(kscores[mkey].pk===team.id)?null:team.id;
+        saveKScores();recomputeKO();
+        if(kscores[mkey]?.pk===team.id) toast(`${team.name} 点球晋级！`);
+      });
+      return btn;
+    };
+    const vsSep=document.createElement('span');vsSep.style.cssText='font-size:11px;color:var(--dim);';vsSep.textContent='vs';
+    pkDiv.appendChild(mkPkBtn(tA));pkDiv.appendChild(vsSep);pkDiv.appendChild(mkPkBtn(tB));
+  }
+  wrap.appendChild(pkDiv);
+
+  // Assign real updateETVis after all elements exist
+  updateETVis=()=>{
+    const k=kscores[mkey]||{};
+    const isRTD=k.a!=null&&k.b!=null&&+k.a===+k.b;
+    const isETD=isRTD&&k.eta!=null&&k.etb!=null&&(+k.a+(+k.eta||0))===(+k.b+(+k.etb||0));
+    etDiv.style.display=isRTD?'flex':'none';
+    pkDiv.style.display=isETD?'flex':'none';
+    if(isRTD&&!isETD&&k.eta!=null&&k.etb!=null){
+      const wt=+k.a+ +k.eta>+k.b+ +k.etb?tA:tB;
+      etHint.textContent=wt?`→ ${wt.name} 加时晋级`:'';
+    }else if(isETD){etHint.textContent='→ 点球大战';}
+    else{etHint.textContent='请填写加时赛比分';}
+  };
+
+  return wrap;
+}
+
+function renderInlineKO() {
+  const container=document.getElementById('ko-rounds');if(!container)return;
+  container.innerHTML='';
+  KO_ROUNDS.forEach(round=>{
+    let total=0,filled=0;const matchEls=[];
+    round.parts.forEach(({rid,n})=>{
+      for(let mi=0;mi<n;mi++){
+        total++;
+        const sidA=`${rid}-${mi*2}`,sidB=`${rid}-${mi*2+1}`;
+        if(slots[sidA]&&slots[sidB])filled++;
+        matchEls.push(makeKOMatch(rid,mi));
+      }
+    });
+    const rd=document.createElement('div');rd.className='ko-rd';
+    const hdr=document.createElement('div');hdr.className='ko-rd-hdr';
+    const lbl=document.createElement('span');lbl.className='ko-rd-label';lbl.textContent=round.label;
+    const cnt=document.createElement('span');cnt.className='ko-rd-count';cnt.textContent=`${filled}/${total} 已填`;
+    hdr.appendChild(lbl);hdr.appendChild(cnt);rd.appendChild(hdr);
+    const grid=document.createElement('div');grid.className='ko-rd-grid';
+    matchEls.forEach(el=>grid.appendChild(el));
+    rd.appendChild(grid);container.appendChild(rd);
+  });
+  const champTid=slots['champ-0'],ct=champTid?byId(champTid):null;
+  const champDiv=document.createElement('div');champDiv.className='ko-champ';
+  champDiv.innerHTML=ct
+    ?`<div class="ko-champ-box"><span style="font-size:24px">${ct.flag}</span><span>🏆 世界杯冠军：${ct.name}</span></div>`
+    :`<div class="ko-champ-empty">🏆 冠军待定</div>`;
+  container.appendChild(champDiv);
+}
+
+function generateKO() {
+  const st={};GROUPS.forEach(g=>{st[g.name]=getStandings(g.name);});
+  const allThirds=GROUPS.map(g=>({...st[g.name][2],srcGroup:g.name})).sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf);
+  const top8=allThirds.slice(0,8);
+  const thirdSlots=R32_MATCHES.filter(m=>m.tb.rank===3)
+    .map(m=>({sid:`${m.rid}-${m.bi}`,eligible:top8.filter(t=>m.tb.el.includes(t.srcGroup))}))
+    .sort((a,b)=>a.eligible.length-b.eligible.length);
+  const used=new Set(),thirds={};
+  thirdSlots.forEach(({sid,eligible})=>{for(const t of eligible){if(!used.has(t.id)){thirds[sid]=t.id;used.add(t.id);break;}}});
+  const newSlots={};
+  R32_MATCHES.forEach(m=>{
+    const sidA=`${m.rid}-${m.ai}`,sidB=`${m.rid}-${m.bi}`;
+    const tA=st[m.ta.grp][m.ta.rank-1];if(tA)newSlots[sidA]=tA.id;
+    if(m.tb.rank<=2){const tB=st[m.tb.grp][m.tb.rank-1];if(tB)newSlots[sidB]=tB.id;}
+    else if(thirds[sidB])newSlots[sidB]=thirds[sidB];
+  });
+  slots=newSlots;kscores={};picks={};
+  save();saveKScores();savePicks();
+  recomputeKO();
+  toast('32强对阵已生成！');
+}
+
+// ══════════ 夺冠之路 (top/bottom halves) ══════════
+
+// Returns the slot ID for a group's 1st or 2nd place in R32
+function getGroupSlot(grp, rank) {
+  for(const m of R32_MATCHES){
+    if(m.ta.rank===rank&&m.ta.grp===grp) return `${m.rid}-${m.ai}`;
+    if(m.tb.rank===rank&&m.tb.grp===grp) return `${m.rid}-${m.bi}`;
+  }
+  return null;
+}
+
+// Returns {s1, s2, r1Id, r2Id} — current 1st/2nd slot IDs and team IDs for a group
+function getGroupSeeds(grp) {
+  const s1=getGroupSlot(grp,1), s2=getGroupSlot(grp,2);
+  return {s1, s2, r1Id:s1?slots[s1]:null, r2Id:s2?slots[s2]:null};
+}
+
+function teamGroup(teamId){
+  return GROUPS.find(g=>g.teams.some(t=>t.id===teamId))?.name||null;
+}
+
+// Find the 3rd-place R32 slot currently occupied by a team from group grp
+function getThirdSlotFor(grp){
+  for(const m of R32_MATCHES){
+    if(m.tb.rank===3&&m.tb.el&&m.tb.el.includes(grp)){
+      const sid=`${m.rid}-${m.bi}`;
+      if(slots[sid]&&teamGroup(slots[sid])===grp) return sid;
+    }
+  }
+  return null;
+}
+
+// Find an empty 3rd-place slot whose el list includes grp
+function findEmptyThirdSlot(grp){
+  for(const m of R32_MATCHES){
+    if(m.tb.rank===3&&m.tb.el&&m.tb.el.includes(grp)){
+      const sid=`${m.rid}-${m.bi}`;
+      if(!slots[sid]) return sid;
+    }
+  }
+  return null;
+}
+
+// Called when user clicks a team in the group seeding panel
+function clickGroupTeam(grp, teamId) {
+  const {s1,s2,r1Id,r2Id}=getGroupSeeds(grp);
+  const thirdSid=getThirdSlotFor(grp);
+  const r3Id=thirdSid?slots[thirdSid]:null;
+  if(r1Id===teamId){ if(s1)delete slots[s1]; }
+  else if(r2Id===teamId){ if(s2)delete slots[s2]; }
+  else if(r3Id===teamId){ delete slots[thirdSid]; }
+  else if(!r1Id&&s1){ slots[s1]=teamId; toast(`${byId(teamId)?.name} → ${grp}组 第1名`); }
+  else if(!r2Id&&s2){ slots[s2]=teamId; toast(`${byId(teamId)?.name} → ${grp}组 第2名`); }
+  else {
+    // Assign as 3rd-place qualifier
+    if(thirdSid){
+      slots[thirdSid]=teamId;
+      toast(`${byId(teamId)?.name} → ${grp}组 第3名晋级`);
+    } else {
+      const emptySid=findEmptyThirdSlot(grp);
+      if(emptySid){ slots[emptySid]=teamId; toast(`${byId(teamId)?.name} → ${grp}组 第3名晋级`); }
+      else { toast('第3名席位已满（8个），取消其他第3名后再试'); return; }
+    }
+  }
+  save(); recomputeKO();
+  if(document.getElementById('pane-knockout').classList.contains('active')) renderBracket();
+}
+
+function makeGroupSeedPanel() {
+  const sec=document.createElement('div');sec.className='gs-seed';
+  const hdr=document.createElement('div');hdr.className='gs-seed-hdr';
+  const ttl=document.createElement('div');ttl.className='gs-seed-title';ttl.textContent='📋 分组出线设置';
+  const hint=document.createElement('span');hint.className='gs-seed-hint';hint.textContent='绿=1st · 蓝=2nd · 黄=3rd晋级（共8个）· 再点取消';
+  const colBtn=document.createElement('button');colBtn.className='btn bk-col-btn';
+  const seedCollapsed=!!_bkCollapsed['seed'];
+  colBtn.textContent=seedCollapsed?'▼ 展开':'▲ 收起';
+  colBtn.addEventListener('click',()=>{
+    const body=sec.querySelector('.gs-seed-body');if(!body)return;
+    const c=body.classList.toggle('collapsed');
+    _bkCollapsed['seed']=c;
+    colBtn.textContent=c?'▼ 展开':'▲ 收起';
+  });
+  hdr.appendChild(ttl);hdr.appendChild(hint);hdr.appendChild(colBtn);sec.appendChild(hdr);
+
+  const body=document.createElement('div');body.className='gs-seed-body'+(seedCollapsed?' collapsed':'');
+  const grid=document.createElement('div');grid.className='gs-seed-grid';
+  GROUPS.forEach(g=>grid.appendChild(makeGroupSeedCard(g)));
+  body.appendChild(grid);sec.appendChild(body);
+  return sec;
+}
+
+function makeGroupSeedCard(g) {
+  const {s1,s2,r1Id,r2Id}=getGroupSeeds(g.name);
+  const thirdSid=getThirdSlotFor(g.name);
+  const r3Id=thirdSid?slots[thirdSid]:null;
+  const r1=r1Id?byId(r1Id):null, r2=r2Id?byId(r2Id):null, r3=r3Id?byId(r3Id):null;
+
+  const card=document.createElement('div');card.className='gs-seed-card';
+  const hdr=document.createElement('div');hdr.className='gs-seed-card-hdr';
+  hdr.textContent=`${g.name}组`;
+  const sels=document.createElement('div');sels.className='gs-seed-sels';
+  if(r1){const s=document.createElement('span');s.className='gs-seed-sel1';s.textContent=`${r1.flag}1`;sels.appendChild(s);}
+  if(r2){const s=document.createElement('span');s.className='gs-seed-sel2';s.textContent=`${r2.flag}2`;sels.appendChild(s);}
+  if(r3){const s=document.createElement('span');s.className='gs-seed-sel3';s.textContent=`${r3.flag}3`;sels.appendChild(s);}
+  hdr.appendChild(sels);card.appendChild(hdr);
+
+  const teamsDiv=document.createElement('div');teamsDiv.className='gs-seed-teams';
+  g.teams.forEach(t=>{
+    const isR1=r1Id===t.id, isR2=r2Id===t.id, isR3=r3Id===t.id;
+    const btn=document.createElement('button');
+    btn.className='gs-team-btn'+(isR1?' rank1':isR2?' rank2':isR3?' rank3':'');
+    const flagSp=document.createElement('span');flagSp.textContent=t.flag;
+    const nameSp=document.createElement('span');nameSp.textContent=t.name;nameSp.style.flex='1';
+    btn.appendChild(flagSp);btn.appendChild(nameSp);
+    if(isR1||isR2||isR3){
+      const badge=document.createElement('span');badge.className='gs-rank-badge';
+      badge.textContent=isR1?'1st ✕':isR2?'2nd ✕':'3rd ✕';btn.appendChild(badge);
+    }
+    btn.addEventListener('click',()=>clickGroupTeam(g.name,t.id));
+    teamsDiv.appendChild(btn);
+  });
+  card.appendChild(teamsDiv);
+  return card;
+}
+
+function renderBracket(){
+  const bk=document.getElementById('bracket');if(!bk)return;
+  bk.innerHTML='';bk.className='';bk.style.cssText='';
+  bk.appendChild(makeGroupSeedPanel());
+
+  const wrap=document.createElement('div');wrap.className='bracket-unified';
+  const hr=document.createElement('div');hr.className='half-rounds';
+
+  // Left side: r32L → r16L → qfL → sfL (converging toward center)
+  RL.forEach((r,i)=>{
+    if(i>0)hr.appendChild(makeConnector(RL[i-1].n,r.n,'right'));
+    hr.appendChild(makeRoundCol(r));
+  });
+
+  // Center: final match
+  hr.appendChild(makeConnector(1,1,'right1'));
+  hr.appendChild(makeFinalCol());
+  hr.appendChild(makeConnector(1,1,'left1'));
+
+  // Right side: sfR → qfR → r16R → r32R (expanding from center)
+  RR.forEach((r,i)=>{
+    if(i>0)hr.appendChild(makeConnector(RR[i-1].n,r.n,'left'));
+    hr.appendChild(makeRoundCol(r));
+  });
+
+  wrap.appendChild(hr);
+  bk.appendChild(wrap);
+
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    if(hr)drawBracketLines(hr);
+  }));
+}
+
+function makeFinalCol(){
+  const col=document.createElement('div');col.className='round-col round-col-fin';
+  const ttl=document.createElement('div');ttl.className='round-title';ttl.textContent='🥈 决赛';
+  col.appendChild(ttl);
+  const sg=document.createElement('div');sg.className='sg';
+  sg.appendChild(makeBracketPair('fin',0,0,1,false));
+  col.appendChild(sg);
+  const cb=document.createElement('div');cb.className='champ-block round-col-fin-champ';
+  const ct=document.createElement('div');ct.className='champ-title';ct.textContent='🏆 世界杯冠军';
+  cb.appendChild(ct);cb.appendChild(makeChampSlot());
+  col.appendChild(cb);
+  return col;
+}
+
+function makeRoundCol(r) {
+  const col=document.createElement('div');col.className='round-col';
+  const ttl=document.createElement('div');ttl.className='round-title';ttl.textContent=r.label;
+  col.appendChild(ttl);
+  const sg=document.createElement('div');sg.className='sg';
+  const isR32=(r.id==='r32L'||r.id==='r32R');
+  const matches=isR32?R32_MATCHES.filter(m=>m.rid===r.id):null;
+  for(let mi=0;mi<r.n;mi++){
+    const aiIdx=isR32?matches[mi].ai:mi*2;
+    const biIdx=isR32?matches[mi].bi:mi*2+1;
+    sg.appendChild(makeBracketPair(r.id,mi,aiIdx,biIdx,isR32));
+  }
+  col.appendChild(sg);return col;
+}
+
+function makeConnector(nFrom,nTo,side='right'){
+  const div=document.createElement('div');div.className='bk-conn';
+  div.dataset.from=nFrom;div.dataset.to=nTo;div.dataset.side=side;
+  return div;
+}
+
+function makeBracketPair(rid,mi,aiIdx,biIdx,isR32=false) {
+  const sidA=`${rid}-${aiIdx}`,sidB=`${rid}-${biIdx}`;
+  const tA=slots[sidA]?byId(slots[sidA]):null;
+  const tB=slots[sidB]?byId(slots[sidB]):null;
+  const mkey=`${rid}-m${mi}`;
+  const {winId,source}=getKOWinner(rid,mi);
+  const isScoreLocked=source==='score'&&winId!=null;
+
+  const pair=document.createElement('div');
+  pair.className='match-pair'+(winId?' decided':'');
+
+  const makeRow=(sid,t)=>{
+    const isWinner=!!(winId&&t&&t.id===winId);
+    const isLoser=!!(winId&&t&&t.id!==winId);
+    const canClick=!!(tA&&tB&&t&&!isScoreLocked);
+    const isPick=!isScoreLocked&&t&&picks[mkey]===t.id&&!isWinner;
+
+    const row=document.createElement('div');
+    row.className='mp-team'+(t?' filled':'')+(isWinner?' winner':'')+(isLoser?' loser':'')+(isPick?' picked':'')+(canClick?' clickable':'');
+
+    if(t){
+      const flag=document.createElement('span');flag.className='mp-flag';flag.textContent=t.flag;
+      const name=document.createElement('span');name.className='mp-name';name.textContent=t.name;
+      row.appendChild(flag);row.appendChild(name);
+      if(isWinner){const src=document.createElement('span');src.className='mp-src';src.textContent=source==='score'?'⚽':'👆';row.appendChild(src);}
+      if(isR32){
+        // Allow changing R32 slot assignment
+        const clr=document.createElement('button');clr.className='slot-clear-btn';clr.textContent='✕';clr.title='更换球队';
+        clr.addEventListener('click',e=>{
+          e.stopPropagation();
+          delete slots[sid];delete picks[mkey];delete kscores[mkey];
+          save();savePicks();saveKScores();recomputeKO();
+          if(document.getElementById('pane-knockout').classList.contains('active'))renderBracket();
+        });
+        row.appendChild(clr);
+      }
+      if(canClick){
+        row.title=isWinner&&source==='pick'?'取消选择':`选 ${t.name} 晋级`;
+        row.addEventListener('click',()=>{
+          if(picks[mkey]===t.id)delete picks[mkey]; else picks[mkey]=t.id;
+          savePicks();recomputeKO();
+          if(picks[mkey]===t.id)toast(`${t.name} 手动晋级！`);
+        });
+      }
+    } else if(isR32){
+      // Empty R32 slot — show seed label from R32_MATCHES (use group panel to fill)
+      const idx=parseInt(sid.split('-').pop());
+      const rm=R32_MATCHES.find(m=>m.rid===rid&&(m.ai===idx||m.bi===idx));
+      const info=rm?(rm.ai===idx?rm.ta:rm.tb):null;
+      const label=info?(info.rank===3?`第3名 (${info.el.join('')})`:`${info.grp}组 第${info.rank}名`):'—';
+      const ph=document.createElement('span');ph.className='r32-placeholder';ph.textContent=label;
+      row.appendChild(ph);
+    } else {
+      const e=document.createElement('div');e.className='mp-empty';e.textContent='—';row.appendChild(e);
+    }
+    return row;
+  };
+
+  pair.appendChild(makeRow(sidA,tA));
+  pair.appendChild(makeRow(sidB,tB));
+  return pair;
+}
+
+function makeChampSlot(){
+  const el=document.createElement('div');el.className='slot-champ';
+  const tid=slots['champ-0'];
+  if(tid){const t=byId(tid);el.innerHTML=`<span class="c-flag">${t.flag}</span><span class="c-name">${t.name}</span>`;}
+  else el.innerHTML='<span class="c-empty">🏆 待定</span>';
+  return el;
+}
+
+// Draw SVG connector lines between round columns
+function drawBracketLines(bk) {
+  const existing=bk.querySelector('.bk-svg');if(existing)existing.remove();
+  const bkRect=bk.getBoundingClientRect();
+  const W=bk.scrollWidth||bk.offsetWidth, H=bk.scrollHeight||bk.offsetHeight;
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.classList.add('bk-svg');
+  svg.style.cssText=`position:absolute;top:0;left:0;width:${W}px;height:${H}px;pointer-events:none;overflow:visible;z-index:0;`;
+
+  const LINE='#9ab4cc',LW=1.5;
+  const cx=(x)=>x-bkRect.left, cy=(y)=>y-bkRect.top;
+
+  function line(x1,y1,x2,y2){
+    const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',cx(x1));l.setAttribute('y1',cy(y1));
+    l.setAttribute('x2',cx(x2));l.setAttribute('y2',cy(y2));
+    l.setAttribute('stroke',LINE);l.setAttribute('stroke-width',LW);
+    l.setAttribute('stroke-linecap','round');
+    svg.appendChild(l);
+  }
+
+  bk.querySelectorAll('.bk-conn').forEach(conn=>{
+    const side=conn.dataset.side; // 'right'=left-half (many→few), 'left'=right-half (few→many)
+    const prev=conn.previousElementSibling;
+    const next=conn.nextElementSibling;
+    if(!prev||!next)return;
+
+    const prevPairs=Array.from(prev.querySelectorAll('.match-pair'));
+    const nextPairs=Array.from(next.querySelectorAll('.match-pair'));
+    if(!prevPairs.length||!nextPairs.length)return;
+
+    // Use column edges as anchor X, not individual match-pair edges (more reliable)
+    const prevColR=prev.getBoundingClientRect().right;
+    const nextColL=next.getBoundingClientRect().left;
+    const midX=(prevColR+nextColL)/2;
+
+    if(side==='right'){
+      // Left half: 2 prev pairs → 1 next pair (converging)
+      for(let ni=0;ni<nextPairs.length;ni++){
+        const nr=nextPairs[ni].getBoundingClientRect();
+        const nY=nr.top+nr.height/2;
+        const p0=prevPairs[ni*2]?.getBoundingClientRect();
+        const p1=prevPairs[ni*2+1]?.getBoundingClientRect();
+        if(!p0||!p1)continue;
+        const y0=p0.top+p0.height/2, y1=p1.top+p1.height/2;
+        line(prevColR,y0,midX,y0); line(prevColR,y1,midX,y1);
+        line(midX,y0,midX,y1);     line(midX,nY,nextColL,nY);
+      }
+    } else if(side==='right1'){
+      // sfL→fin: prev center → fin's top-team row
+      if(!prevPairs.length||!nextPairs.length)return;
+      const pr=prevPairs[0].getBoundingClientRect();
+      const pY=pr.top+pr.height/2;
+      const topRow=nextPairs[0].querySelector('.mp-team:first-child');
+      const tr=(topRow||nextPairs[0]).getBoundingClientRect();
+      const nY=tr.top+tr.height/2;
+      line(prevColR,pY,midX,pY);
+      line(midX,Math.min(pY,nY),midX,Math.max(pY,nY));
+      line(midX,nY,nextColL,nY);
+    } else if(side==='left1'){
+      // fin→sfR: fin's bottom-team row → next center
+      if(!prevPairs.length||!nextPairs.length)return;
+      const botRow=prevPairs[0].querySelector('.mp-team:last-child');
+      const br=(botRow||prevPairs[0]).getBoundingClientRect();
+      const pY=br.top+br.height/2;
+      const nr=nextPairs[0].getBoundingClientRect();
+      const nY=nr.top+nr.height/2;
+      line(prevColR,pY,midX,pY);
+      line(midX,Math.min(pY,nY),midX,Math.max(pY,nY));
+      line(midX,nY,nextColL,nY);
+    } else {
+      // Right half: 1 prev pair → 2 next pairs (expanding)
+      for(let pi=0;pi<prevPairs.length;pi++){
+        const pr=prevPairs[pi].getBoundingClientRect();
+        const pY=pr.top+pr.height/2;
+        const n0=nextPairs[pi*2]?.getBoundingClientRect();
+        const n1=nextPairs[pi*2+1]?.getBoundingClientRect();
+        if(!n0||!n1)continue;
+        const y0=n0.top+n0.height/2, y1=n1.top+n1.height/2;
+        line(nextColL,y0,midX,y0); line(nextColL,y1,midX,y1);
+        line(midX,y0,midX,y1);     line(midX,pY,prevColR,pY);
+      }
+    }
+  });
+
+  bk.insertBefore(svg,bk.firstChild);
+}
+
+// ── Reset / Share ──────────────────────────────────────────
+function resetAll(){
+  if(!confirm('确定要清除所有预测？'))return;
+  slots={};scores={};kscores={};picks={};
+  save();saveScores();saveKScores();savePicks();
+  renderGroupStage();renderInlineKO();
   toast('已重置所有预测');
 }
 
-// ── Share / URL hash ──────────────────────────────────────
-function encodeState() {
-  return btoa(JSON.stringify({ s: scores, b: slots }));
-}
-function decodeState(h) {
-  try { return JSON.parse(atob(h)); } catch { return null; }
-}
+function encodeState(){return btoa(JSON.stringify({s:scores,b:slots,k:kscores,p:picks}));}
+function decodeState(h){try{return JSON.parse(atob(h));}catch{return null;}}
 
-let _sharedMode = false;
-
-function shareLink() {
-  const encoded = encodeState();
-
-  // On a real public URL: copy hash link to clipboard
-  const isPublic = location.protocol !== 'file:'
-    && !['localhost','127.0.0.1','::1'].includes(location.hostname)
-    && !location.hostname.endsWith('.local');
-
-  if (isPublic) {
-    const url = location.origin + location.pathname + '#' + encoded;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url)
-        .then(() => toast('分享链接已复制！发给朋友即可查看你的预测'))
-        .catch(() => prompt('复制此分享链接：', url));
-    } else {
-      prompt('复制此分享链接：', url);
-    }
+let _sharedMode=false;
+function shareLink(){
+  const encoded=encodeState();
+  const isPublic=location.protocol!=='file:'&&!['localhost','127.0.0.1','::1'].includes(location.hostname)&&!location.hostname.endsWith('.local');
+  if(isPublic){
+    const url=location.origin+location.pathname+'#'+encoded;
+    if(navigator.clipboard?.writeText){navigator.clipboard.writeText(url).then(()=>toast('分享链接已复制！')).catch(()=>prompt('复制链接：',url));}
+    else prompt('复制链接：',url);
     return;
   }
-
-  // Running locally: generate a self-contained HTML file with embedded data
-  const doc = document.documentElement.cloneNode(true);
-  // Clear dynamic containers — they'll be re-rendered from embedded data on load
-  ['#groups-grid','#thirds-section','#bracket','#pool'].forEach(sel => {
-    const el = doc.querySelector(sel); if (el) el.innerHTML = '';
-  });
-  doc.querySelector('#shared-banner').style.display = 'none';
-  // Inject shared data as the very first script so it's available on boot
-  const inject = document.createElement('script');
-  inject.textContent = `window.__SHARED__='${encoded}';`;
-  const mainScript = doc.querySelector('script');
-  mainScript.parentNode.insertBefore(inject, mainScript);
-
-  const blob = new Blob(['<!DOCTYPE html>\n' + doc.outerHTML], {type:'text/html;charset=utf-8'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'wc2026-prediction.html';
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-  toast('已生成分享文件 📁 把 .html 文件发给朋友，浏览器打开即可查看');
+  const doc=document.documentElement.cloneNode(true);
+  ['#groups-grid','#thirds-section','#ko-rounds','#bracket'].forEach(sel=>{const el=doc.querySelector(sel);if(el)el.innerHTML='';});
+  doc.querySelector('#shared-banner').style.display='none';
+  const inject=document.createElement('script');inject.textContent=`window.__SHARED__='${encoded}';`;
+  const ms=doc.querySelector('script');ms.parentNode.insertBefore(inject,ms);
+  const blob=new Blob(['<!DOCTYPE html>\n'+doc.outerHTML],{type:'text/html;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='wc2026.html';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+  toast('已生成分享文件 📁');
 }
 
-function showSharedBanner() {
-  _sharedMode = true;
-  document.getElementById('shared-banner').style.display = 'flex';
-}
+function showSharedBanner(){_sharedMode=true;document.getElementById('shared-banner').style.display='flex';}
+function adoptShared(){save();saveScores();saveKScores();savePicks();_sharedMode=false;document.getElementById('shared-banner').style.display='none';history.replaceState(null,'',location.pathname);toast('已保存！');}
+function clearShared(){loadScores();load();loadKScores();loadPicks();_sharedMode=false;document.getElementById('shared-banner').style.display='none';history.replaceState(null,'',location.pathname);renderGroupStage();renderInlineKO();}
 
-function adoptShared() {
-  save(); saveScores();
-  _sharedMode = false;
-  document.getElementById('shared-banner').style.display = 'none';
-  history.replaceState(null, '', location.pathname);
-  toast('已保存为我的预测！');
-}
-
-function clearShared() {
-  loadScores(); load();
-  _sharedMode = false;
-  document.getElementById('shared-banner').style.display = 'none';
-  history.replaceState(null, '', location.pathname);
-  renderGroupStage();
-  renderPool(); renderBracket();
-}
-
-function initFromHash() {
-  // Check embedded data (from downloaded share file) or URL hash (from hosted share link)
-  const encoded = window.__SHARED__ || location.hash.slice(1);
-  if (!encoded) return;
-  const data = decodeState(encoded);
-  if (!data) return;
-  scores = data.s || {};
-  slots  = data.b || {};
+function initFromHash(){
+  const encoded=window.__SHARED__||location.hash.slice(1);if(!encoded)return;
+  const data=decodeState(encoded);if(!data)return;
+  scores=data.s||{};slots=data.b||{};kscores=data.k||{};picks=data.p||{};
   showSharedBanner();
 }
 
 // ── Boot ─────────────────────────────────────────────────
-loadScores(); load();
-initFromHash();   // overrides with shared state if URL hash present
+loadScores();load();loadKScores();loadPicks();
+initFromHash();
 renderGroupStage();
+renderInlineKO();
 </script>
 </body>
 </html>
