@@ -141,14 +141,27 @@ header { background:var(--bg2); border-bottom:2px solid var(--gold); padding:9px
 .bracket-outer { flex:1; overflow-y:auto; overflow-x:hidden; padding:10px 14px 40px; }
 .bracket-hint { padding:6px 12px; font-size:12px; color:var(--dim); background:var(--bg2); border-bottom:1px solid var(--bd); flex-shrink:0; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
 .bracket-hint strong { color:var(--gold); }
-/* Unified bracket container */
-.bracket-unified { overflow-x:auto; padding:8px 4px 12px; }
+/* Half-bracket section cards */
+.bk-section { background:var(--bg2); border:1px solid var(--bd); border-radius:8px; margin-bottom:10px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+.bk-hdr { display:flex; align-items:center; padding:7px 14px; border-bottom:1px solid; }
+.bk-hdr-title { font-size:14px; font-weight:800; flex:1; }
+.bk-body { overflow-x:auto; padding:8px 10px 12px; }
+/* Upper half — red */
+.bk-upper .bk-hdr { background:rgba(212,56,26,.07); border-color:rgba(212,56,26,.2); }
+.bk-upper .bk-hdr-title { color:#c93019; }
+.bk-upper .round-title { color:#c93019; background:rgba(212,56,26,.08); border-color:rgba(212,56,26,.25); }
+/* Lower half — blue */
+.bk-lower .bk-hdr { background:rgba(26,106,191,.07); border-color:rgba(26,106,191,.2); }
+.bk-lower .bk-hdr-title { color:var(--blue); }
+.bk-lower .round-title { color:var(--blue); background:rgba(26,106,191,.08); border-color:rgba(26,106,191,.25); }
+/* Final section */
+.final-sec { display:flex; flex-direction:column; align-items:center; padding:12px 16px; background:rgba(212,137,10,.06); border:1px solid rgba(212,137,10,.3); border-radius:8px; margin-bottom:10px; gap:10px; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+.final-row { display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center; }
+.sf-win-lbl { font-size:11px; text-align:center; max-width:110px; line-height:1.4; }
+.sf-win-lbl.upper { color:#c93019; font-weight:700; }
+.sf-win-lbl.lower { color:var(--blue); font-weight:700; }
 /* Horizontal rounds row */
-.half-rounds { display:flex; align-items:stretch; min-height:420px; position:relative; }
-/* Final column */
-.round-col-fin { display:flex; flex-direction:column; align-items:center; width:140px; }
-.round-col-fin .sg { flex:1; display:flex; flex-direction:column; justify-content:center; width:100%; }
-.round-col-fin-champ { display:flex; flex-direction:column; align-items:center; gap:4px; margin-top:8px; width:100%; }
+.half-rounds { display:flex; align-items:stretch; min-height:360px; position:relative; }
 /* Round column */
 .round-col { display:flex; flex-direction:column; flex-shrink:0; width:126px; }
 .round-title { text-align:center; font-size:11px; font-weight:700; color:var(--gold); padding:3px 6px; background:rgba(212,137,10,.08); border:1px solid rgba(212,137,10,.3); border-radius:5px; margin-bottom:4px; white-space:nowrap; flex-shrink:0; }
@@ -187,6 +200,12 @@ header { background:var(--bg2); border-bottom:2px solid var(--gold); padding:9px
 /* Toast */
 #toast { position:fixed; bottom:24px; right:24px; background:var(--text); border:1px solid var(--gold); color:#fff; padding:10px 16px; border-radius:8px; font-size:13px; opacity:0; transform:translateY(8px); transition:all .25s; pointer-events:none; z-index:100; box-shadow:0 4px 12px rgba(0,0,0,.15); }
 #toast.on { opacity:1; transform:none; }
+/* Poster modal */
+.poster-overlay { position:fixed; inset:0; background:rgba(0,0,0,.72); z-index:9999; display:flex; align-items:center; justify-content:center; padding:16px; }
+.poster-modal { background:#1a2535; border:1px solid #2a3d50; border-radius:10px; display:flex; flex-direction:column; max-width:600px; width:100%; max-height:90vh; box-shadow:0 8px 40px rgba(0,0,0,.6); }
+.poster-modal-hdr { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid #2a3d50; font-weight:700; color:#dce8f5; flex-shrink:0; }
+.poster-modal-body { overflow-y:auto; padding:12px; display:flex; align-items:flex-start; justify-content:center; }
+.poster-modal-body img { max-width:100%; border-radius:6px; display:block; }
 ::-webkit-scrollbar { width:6px; height:6px; }
 ::-webkit-scrollbar-track { background:var(--bg); }
 ::-webkit-scrollbar-thumb { background:var(--bd); border-radius:3px; }
@@ -247,6 +266,7 @@ header { background:var(--bg2); border-bottom:2px solid var(--gold); padding:9px
     <span style="color:#aaa">·</span>
     <span>点击队伍手动选择晋级 · 分组面板选队进入32强 · ✕取消 · 绿色=已晋级</span>
     <button class="btn" onclick="generateKO();renderBracket()" style="padding:3px 10px;font-size:11px;margin-left:auto">⚡ 从比分预测更新</button>
+    <button class="btn" onclick="generatePoster()" style="padding:3px 10px;font-size:11px">🎨 生成海报</button>
   </div>
   <div class="bracket-outer">
     <div id="bracket" class="bracket-wrap"></div>
@@ -340,19 +360,6 @@ const GS_ROUNDS = [
   {label:'第 3 轮', mi:[2,3]},
 ];
 
-// Bracket round definitions (left to right, then right to left for right half)
-const RL = [
-  {id:'r32L', label:'⚽ 32强', n:8},
-  {id:'r16L', label:'⚡ 16强', n:4},
-  {id:'qfL',  label:'🔥 八强', n:2},
-  {id:'sfL',  label:'🌟 四强', n:1},
-];
-const RR = [
-  {id:'sfR',  label:'🌟 四强', n:1},
-  {id:'qfR',  label:'🔥 八强', n:2},
-  {id:'r16R', label:'⚡ 16强', n:4},
-  {id:'r32R', label:'⚽ 32强', n:8},
-];
 
 
 const R32_MATCHES = [
@@ -862,47 +869,87 @@ function renderBracket(){
   const bk=document.getElementById('bracket');if(!bk)return;
   bk.innerHTML='';bk.className='';bk.style.cssText='';
   bk.appendChild(makeGroupSeedPanel());
-
-  const wrap=document.createElement('div');wrap.className='bracket-unified';
-  const hr=document.createElement('div');hr.className='half-rounds';
-
-  // Left side: r32L → r16L → qfL → sfL (converging toward center)
-  RL.forEach((r,i)=>{
-    if(i>0)hr.appendChild(makeConnector(RL[i-1].n,r.n,'right'));
-    hr.appendChild(makeRoundCol(r));
-  });
-
-  // Center: final match
-  hr.appendChild(makeConnector(1,1,'right1'));
-  hr.appendChild(makeFinalCol());
-  hr.appendChild(makeConnector(1,1,'left1'));
-
-  // Right side: sfR → qfR → r16R → r32R (expanding from center)
-  RR.forEach((r,i)=>{
-    if(i>0)hr.appendChild(makeConnector(RR[i-1].n,r.n,'left'));
-    hr.appendChild(makeRoundCol(r));
-  });
-
-  wrap.appendChild(hr);
-  bk.appendChild(wrap);
-
+  bk.appendChild(makeBkHalf('upper'));
+  bk.appendChild(makeFinalSection());
+  bk.appendChild(makeBkHalf('lower'));
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
-    if(hr)drawBracketLines(hr);
+    const upperHr=document.querySelector('#bk-body-upper .half-rounds');
+    const lowerHr=document.querySelector('#bk-body-lower .half-rounds');
+    if(upperHr) drawBracketLines(upperHr,'#c93019');
+    if(lowerHr) drawBracketLines(lowerHr,'#1a6abf');
   }));
 }
 
-function makeFinalCol(){
-  const col=document.createElement('div');col.className='round-col round-col-fin';
-  const ttl=document.createElement('div');ttl.className='round-title';ttl.textContent='🥈 决赛';
-  col.appendChild(ttl);
-  const sg=document.createElement('div');sg.className='sg';
-  sg.appendChild(makeBracketPair('fin',0,0,1,false));
-  col.appendChild(sg);
-  const cb=document.createElement('div');cb.className='champ-block round-col-fin-champ';
+function makeBkHalf(which){
+  const isUpper=which==='upper';
+  // Round IDs for this half
+  const [outer,mid,inner,sf]=isUpper
+    ?['r32L','r16L','qfL','sfL']
+    :['r32R','r16R','qfR','sfR'];
+  const lbl={outer:'⚽ 32强',mid:'⚡ 16强',inner:'🔥 八强',sf:'🌟 四强'};
+  // X structure: left wing converges to SF, right wing expands back out
+  const leftWing=[
+    {id:outer,label:lbl.outer,n:4,offset:0},
+    {id:mid,  label:lbl.mid,  n:2,offset:0},
+    {id:inner,label:lbl.inner,n:1,offset:0},
+  ];
+  const centerRound={id:sf,label:lbl.sf,n:1,offset:0};
+  const rightWing=[
+    {id:inner,label:lbl.inner,n:1,offset:1},
+    {id:mid,  label:lbl.mid,  n:2,offset:2},
+    {id:outer,label:lbl.outer,n:4,offset:4},
+  ];
+
+  const sec=document.createElement('div');sec.className=`bk-section bk-${which}`;
+  const hdr=document.createElement('div');hdr.className='bk-hdr';
+  const ttl=document.createElement('span');ttl.className='bk-hdr-title';
+  ttl.textContent=isUpper?'🔴 上半区':'🔵 下半区';
+  hdr.appendChild(ttl);sec.appendChild(hdr);
+
+  const body=document.createElement('div');body.className='bk-body';body.id=`bk-body-${which}`;
+  const hr=document.createElement('div');hr.className='half-rounds';
+
+  // Left wing (converging right)
+  leftWing.forEach((r,i)=>{
+    if(i>0)hr.appendChild(makeConnector(leftWing[i-1].n,r.n,'right'));
+    hr.appendChild(makeRoundCol(r));
+  });
+  // SF center (connected via right1/left1)
+  hr.appendChild(makeConnector(1,1,'right1'));
+  hr.appendChild(makeRoundCol(centerRound));
+  hr.appendChild(makeConnector(1,1,'left1'));
+  // Right wing (expanding right)
+  rightWing.forEach((r,i)=>{
+    if(i>0)hr.appendChild(makeConnector(rightWing[i-1].n,r.n,'left'));
+    hr.appendChild(makeRoundCol(r));
+  });
+
+  body.appendChild(hr);sec.appendChild(body);
+  return sec;
+}
+
+function makeFinalSection(){
+  const div=document.createElement('div');div.className='final-sec';
+  const ttl=document.createElement('div');
+  ttl.style.cssText='font-size:15px;font-weight:800;color:var(--gold)';
+  ttl.textContent='🥈 决赛';div.appendChild(ttl);
+  const row=document.createElement('div');row.className='final-row';
+  const sfLTeam=slots['fin-0']?byId(slots['fin-0']):null;
+  const sfRTeam=slots['fin-1']?byId(slots['fin-1']):null;
+  const mkLbl=(t,side,fb)=>{
+    const d=document.createElement('div');d.className=`sf-win-lbl ${side}`;
+    d.textContent=t?`${t.flag} ${t.name}`:fb;return d;
+  };
+  row.appendChild(mkLbl(sfLTeam,'upper','上半区四强待定'));
+  row.appendChild(makeBracketPair('fin',0,0,1,false));
+  row.appendChild(mkLbl(sfRTeam,'lower','下半区四强待定'));
+  div.appendChild(row);
+  const cb=document.createElement('div');cb.className='champ-block';
+  cb.style.cssText='display:flex;flex-direction:column;align-items:center;gap:6px;';
   const ct=document.createElement('div');ct.className='champ-title';ct.textContent='🏆 世界杯冠军';
   cb.appendChild(ct);cb.appendChild(makeChampSlot());
-  col.appendChild(cb);
-  return col;
+  div.appendChild(cb);
+  return div;
 }
 
 function makeRoundCol(r) {
@@ -912,7 +959,9 @@ function makeRoundCol(r) {
   const sg=document.createElement('div');sg.className='sg';
   const isR32=(r.id==='r32L'||r.id==='r32R');
   const matches=isR32?R32_MATCHES.filter(m=>m.rid===r.id):null;
-  for(let mi=0;mi<r.n;mi++){
+  const offset=r.offset||0;
+  for(let i=0;i<r.n;i++){
+    const mi=offset+i;
     const aiIdx=isR32?matches[mi].ai:mi*2;
     const biIdx=isR32?matches[mi].bi:mi*2+1;
     sg.appendChild(makeBracketPair(r.id,mi,aiIdx,biIdx,isR32));
@@ -998,7 +1047,7 @@ function makeChampSlot(){
 }
 
 // Draw SVG connector lines between round columns
-function drawBracketLines(bk) {
+function drawBracketLines(bk, lineColor='#9ab4cc') {
   const existing=bk.querySelector('.bk-svg');if(existing)existing.remove();
   const bkRect=bk.getBoundingClientRect();
   const W=bk.scrollWidth||bk.offsetWidth, H=bk.scrollHeight||bk.offsetHeight;
@@ -1006,7 +1055,7 @@ function drawBracketLines(bk) {
   svg.classList.add('bk-svg');
   svg.style.cssText=`position:absolute;top:0;left:0;width:${W}px;height:${H}px;pointer-events:none;overflow:visible;z-index:0;`;
 
-  const LINE='#9ab4cc',LW=1.5;
+  const LINE=lineColor,LW=1.5;
   const cx=(x)=>x-bkRect.left, cy=(y)=>y-bkRect.top;
 
   function line(x1,y1,x2,y2){
@@ -1083,6 +1132,180 @@ function drawBracketLines(bk) {
   });
 
   bk.insertBefore(svg,bk.firstChild);
+}
+
+// ── Poster ──────────────────────────────────────────────────
+function generatePoster(){
+  // 7-column X structure per half: r32(left4)→r16(2)→qf(1)→sf(center)→qf(1)→r16(2)→r32(right4)
+  const PW=1080,MW=120,MH=40,MGAP=8,UNIT=MH+MGAP,CG=14,BX=78;
+  const UY0=110,LY0=760,TOTAL_H=1220;
+  const colX=i=>BX+i*(MW+CG);  // 7 cols: 78,212,346,480,614,748,882; right edge=1002, margin=78 ✓
+
+  function yCtrsR32(y0){return Array.from({length:8},(_,i)=>y0+UNIT*i+MH/2);}
+  function pSlot(rid,si){const id=slots[`${rid}-${si}`];return id?byId(id):null;}
+  function escXml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+  function matchBox(x,cy,topT,botT,winId,cpIdx){
+    const y=cy-MH/2,r=4,th=MH/2-1;
+    const dimC='#6b8099',textC='#dce8f5',winC='#1e9e3a';
+    const topWin=winId&&topT&&winId===topT.id;
+    const botWin=winId&&botT&&winId===botT.id;
+    let s=`<rect x="${x}" y="${y}" width="${MW}" height="${MH}" rx="${r}" fill="#172535" stroke="#2a3d50" stroke-width="1"/>`;
+    if(topWin)s+=`<rect x="${x+1}" y="${y+1}" width="${MW-2}" height="${th}" rx="${r-1}" fill="rgba(30,158,58,.18)"/>`;
+    const topTxt=topT?`${topT.flag} ${topT.name}`:'待定';
+    s+=`<text x="${x+6}" y="${y+th/2+5}" font-size="11" fill="${topWin?winC:topT?textC:dimC}" clip-path="url(#cp${cpIdx})">${escXml(topTxt)}</text>`;
+    s+=`<line x1="${x}" y1="${y+th+1}" x2="${x+MW}" y2="${y+th+1}" stroke="#2a3d50" stroke-width="1"/>`;
+    if(botWin)s+=`<rect x="${x+1}" y="${y+th+2}" width="${MW-2}" height="${th}" rx="${r-1}" fill="rgba(30,158,58,.18)"/>`;
+    const botTxt=botT?`${botT.flag} ${botT.name}`:'待定';
+    s+=`<text x="${x+6}" y="${y+th+2+th/2+5}" font-size="11" fill="${botWin?winC:botT?textC:dimC}" clip-path="url(#cp${cpIdx})">${escXml(botTxt)}</text>`;
+    return s;
+  }
+
+  // Converging connector: fromC has more items, toC fewer (pairs → one)
+  function connConv(x1,fromC,x2,toC,color){
+    const midX=x1+CG/2;let s='';
+    toC.forEach((pcy,pi)=>{
+      const c1=fromC[pi*2],c2=fromC[pi*2+1];
+      s+=`<line x1="${x1}" y1="${c1}" x2="${midX}" y2="${c1}" stroke="${color}" stroke-width="1.4" opacity=".75"/>`;
+      s+=`<line x1="${x1}" y1="${c2}" x2="${midX}" y2="${c2}" stroke="${color}" stroke-width="1.4" opacity=".75"/>`;
+      s+=`<line x1="${midX}" y1="${c1}" x2="${midX}" y2="${c2}" stroke="${color}" stroke-width="1.4" opacity=".75"/>`;
+      s+=`<line x1="${midX}" y1="${pcy}" x2="${x2}" y2="${pcy}" stroke="${color}" stroke-width="1.4" opacity=".75"/>`;
+    });
+    return s;
+  }
+
+  // Diverging connector: fromC has fewer items, toC more (one → pairs)
+  function connDiv(x1,fromC,x2,toC,color){
+    const midX=x1+CG/2;let s='';
+    fromC.forEach((pcy,pi)=>{
+      const c1=toC[pi*2],c2=toC[pi*2+1];
+      s+=`<line x1="${x1}" y1="${pcy}" x2="${midX}" y2="${pcy}" stroke="${color}" stroke-width="1.4" opacity=".75"/>`;
+      s+=`<line x1="${midX}" y1="${c1}" x2="${midX}" y2="${c2}" stroke="${color}" stroke-width="1.4" opacity=".75"/>`;
+      s+=`<line x1="${midX}" y1="${c1}" x2="${x2}" y2="${c1}" stroke="${color}" stroke-width="1.4" opacity=".75"/>`;
+      s+=`<line x1="${midX}" y1="${c2}" x2="${x2}" y2="${c2}" stroke="${color}" stroke-width="1.4" opacity=".75"/>`;
+    });
+    return s;
+  }
+
+  // Elbow connector: horiz from (x1,y1) → midX, vert to y2, horiz → (x2,y2)
+  function connElbow(x1,y1,x2,y2,color){
+    const midX=x1+CG/2;
+    let s=`<line x1="${x1}" y1="${y1}" x2="${midX}" y2="${y1}" stroke="${color}" stroke-width="1.4" opacity=".75"/>`;
+    if(y1!==y2)s+=`<line x1="${midX}" y1="${Math.min(y1,y2)}" x2="${midX}" y2="${Math.max(y1,y2)}" stroke="${color}" stroke-width="1.4" opacity=".75"/>`;
+    s+=`<line x1="${midX}" y1="${y2}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="1.4" opacity=".75"/>`;
+    return s;
+  }
+
+  function halfSvg(which,y0,color){
+    const [outer,mid,inner,sf]=which==='upper'
+      ?['r32L','r16L','qfL','sfL']:['r32R','r16R','qfR','sfR'];
+    const r32all=yCtrsR32(y0);
+    const r32L=r32all.slice(0,4), r32R=r32all.slice(4,8);
+    const r16L=[0,1].map(i=>(r32L[i*2]+r32L[i*2+1])/2);
+    const r16R=[0,1].map(i=>(r32R[i*2]+r32R[i*2+1])/2);
+    const qfL=[(r16L[0]+r16L[1])/2];
+    const qfR=[(r16R[0]+r16R[1])/2];
+    const sfC=[(qfL[0]+qfR[0])/2];
+    // SF box: top-team row center and bottom-team row center (th=MH/2-1=19)
+    const sfTopY=sfC[0]-MH/4, sfBotY=sfC[0]+MH/4;
+    let s='';
+    // Left wing: r32(0-3) → r16(0-1) → qf(0)
+    for(let mi=0;mi<4;mi++){const {winId}=getKOWinner(outer,mi);s+=matchBox(colX(0),r32L[mi],pSlot(outer,mi*2),pSlot(outer,mi*2+1),winId,0);}
+    for(let mi=0;mi<2;mi++){const {winId}=getKOWinner(mid,mi);s+=matchBox(colX(1),r16L[mi],pSlot(mid,mi*2),pSlot(mid,mi*2+1),winId,1);}
+    {const {winId}=getKOWinner(inner,0);s+=matchBox(colX(2),qfL[0],pSlot(inner,0),pSlot(inner,1),winId,2);}
+    // SF center
+    {const {winId}=getKOWinner(sf,0);s+=matchBox(colX(3),sfC[0],pSlot(sf,0),pSlot(sf,1),winId,3);}
+    // Right wing: qf(1) → r16(2-3) → r32(4-7)
+    {const {winId}=getKOWinner(inner,1);s+=matchBox(colX(4),qfR[0],pSlot(inner,2),pSlot(inner,3),winId,4);}
+    for(let mi=2;mi<4;mi++){const {winId}=getKOWinner(mid,mi);s+=matchBox(colX(5),r16R[mi-2],pSlot(mid,mi*2),pSlot(mid,mi*2+1),winId,5);}
+    for(let mi=4;mi<8;mi++){const {winId}=getKOWinner(outer,mi);s+=matchBox(colX(6),r32R[mi-4],pSlot(outer,mi*2),pSlot(outer,mi*2+1),winId,6);}
+    // Connectors: left wing converging, elbow to SF slots, right wing diverging
+    s+=connConv(colX(0)+MW,r32L,colX(1),r16L,color);
+    s+=connConv(colX(1)+MW,r16L,colX(2),qfL,color);
+    s+=connElbow(colX(2)+MW,qfL[0],colX(3),sfTopY,color);   // QF left → SF top slot
+    s+=connElbow(colX(3)+MW,sfBotY,colX(4),qfR[0],color);   // SF bot slot → QF right
+    s+=connDiv(colX(4)+MW,qfR,colX(5),r16R,color);
+    s+=connDiv(colX(5)+MW,r16R,colX(6),r32R,color);
+    return s;
+  }
+
+  let svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${PW}" height="${TOTAL_H}" font-family="'Segoe UI','Microsoft YaHei',sans-serif">`;
+  svg+=`<rect width="${PW}" height="${TOTAL_H}" fill="#0f1922"/>`;
+
+  // ClipPaths for each of the 7 columns (col 3 also covers the centered final match)
+  svg+='<defs>';
+  for(let ci=0;ci<7;ci++)svg+=`<clipPath id="cp${ci}"><rect x="${colX(ci)+4}" y="0" width="${MW-8}" height="${TOTAL_H}"/></clipPath>`;
+  svg+='</defs>';
+
+  // Title bar
+  svg+=`<rect width="${PW}" height="80" fill="#0c151f"/>`;
+  svg+=`<text x="${PW/2}" y="49" text-anchor="middle" font-size="26" font-weight="800" fill="#d4890a">&#x1F3C6; 2026 FIFA &#x4E16;&#x754C;&#x676F; &#xB7; &#x593A;&#x51A0;&#x4E4B;&#x8DEF;</text>`;
+
+  // Upper label
+  svg+=`<rect x="0" y="80" width="${PW}" height="30" fill="rgba(201,48,25,.12)"/>`;
+  svg+=`<text x="20" y="100" font-size="13" font-weight="700" fill="#e05540">&#x1F534; &#x4E0A;&#x534A;&#x533A;</text>`;
+
+  // Upper bracket
+  svg+=halfSvg('upper',UY0,'#c93019');
+
+  // Final divider
+  const finY=UY0+8*UNIT+16;
+  svg+=`<rect x="0" y="${finY-4}" width="${PW}" height="168" fill="rgba(212,137,10,.06)"/>`;
+  svg+=`<line x1="0" y1="${finY-4}" x2="${PW}" y2="${finY-4}" stroke="rgba(212,137,10,.3)" stroke-width="1"/>`;
+  svg+=`<text x="${PW/2}" y="${finY+18}" text-anchor="middle" font-size="15" font-weight="800" fill="#d4890a">&#x1F948; &#x51B3;&#x8D5B;</text>`;
+
+  // Final match (centered; finMX=480=colX(3), so clipPath cp3 applies)
+  const finMX=(PW-MW)/2,finMY=finY+26;
+  const finA=slots['fin-0']?byId(slots['fin-0']):null;
+  const finB=slots['fin-1']?byId(slots['fin-1']):null;
+  const {winId:finWin}=getKOWinner('fin',0);
+  svg+=matchBox(finMX,finMY+MH/2,finA,finB,finWin,3);
+
+  // Champion
+  const champId=slots['champ-0'],champ=champId?byId(champId):null;
+  const champY=finMY+MH+22;
+  svg+=`<text x="${PW/2}" y="${champY+4}" text-anchor="middle" font-size="12" font-weight="700" fill="#d4890a">&#x1F3C6; &#x4E16;&#x754C;&#x676F;&#x51A0;&#x519B;</text>`;
+  const cbW=200,cbX=(PW-cbW)/2,cbY=champY+12;
+  svg+=`<rect x="${cbX}" y="${cbY}" width="${cbW}" height="34" rx="5" fill="rgba(212,137,10,.12)" stroke="rgba(212,137,10,.6)" stroke-width="1.5"/>`;
+  const champTxt=champ?escXml(`${champ.flag} ${champ.name}`):'&#x51A0;&#x519B;&#x5F85;&#x5B9A;';
+  svg+=`<text x="${PW/2}" y="${cbY+22}" text-anchor="middle" font-size="15" font-weight="800" fill="${champ?'#d4890a':'#6b8099'}">${champTxt}</text>`;
+
+  // Lower label
+  svg+=`<rect x="0" y="${LY0-30}" width="${PW}" height="30" fill="rgba(26,106,191,.12)"/>`;
+  svg+=`<text x="20" y="${LY0-10}" font-size="13" font-weight="700" fill="#2878d6">&#x1F535; &#x4E0B;&#x534A;&#x533A;</text>`;
+
+  // Lower bracket
+  svg+=halfSvg('lower',LY0,'#1a6abf');
+
+  // Footer
+  const footY=LY0+8*UNIT+14;
+  svg+=`<text x="${PW/2}" y="${footY+12}" text-anchor="middle" font-size="10" fill="#3d5870">2026 FIFA World Cup Bracket · ${new Date().toLocaleDateString('zh-CN')}</text>`;
+
+  svg+='</svg>';
+  showPosterModal(svg,PW,TOTAL_H);
+}
+
+function showPosterModal(svgStr,w,h){
+  const old=document.getElementById('poster-overlay');if(old)old.remove();
+  const blob=new Blob([svgStr],{type:'image/svg+xml'});
+  const url=URL.createObjectURL(blob);
+  const overlay=document.createElement('div');
+  overlay.className='poster-overlay';overlay.id='poster-overlay';
+  overlay.innerHTML=`<div class="poster-modal"><div class="poster-modal-hdr"><span>🎨 夺冠之路海报</span><div style="display:flex;gap:8px"><button class="btn" id="poster-dl" style="color:#fff;border-color:#4a7cbf">⬇️ 下载 PNG</button><button class="btn" id="poster-close" style="color:#fff;border-color:#4a7cbf">✕ 关闭</button></div></div><div class="poster-modal-body"><img id="poster-img" src="${url}" alt="poster"></div></div>`;
+  document.body.appendChild(overlay);
+  const close=()=>{overlay.remove();URL.revokeObjectURL(url);};
+  document.getElementById('poster-close').onclick=close;
+  overlay.addEventListener('click',e=>{if(e.target===overlay)close();});
+  document.getElementById('poster-dl').onclick=()=>{
+    const img=new Image();img.width=w;img.height=h;
+    img.onload=()=>{
+      const cv=document.createElement('canvas');cv.width=w;cv.height=h;
+      cv.getContext('2d').drawImage(img,0,0,w,h);
+      const a=document.createElement('a');a.href=cv.toDataURL('image/png');
+      a.download='wc2026-bracket.png';a.click();
+    };
+    img.src=url;
+  };
 }
 
 // ── Reset / Share ──────────────────────────────────────────
